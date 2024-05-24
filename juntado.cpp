@@ -410,10 +410,14 @@ int main()
         cout << "1) Iniciar Partida" << endl;
         cout << "2) Como jugar" << endl;
         cout << "3) Top Jugadores" << endl;
-        cout << "4) Creditos" << endl;
+        cout << "4) Creditos " << endl;
         cout << "5) Salir" << endl;
         cout << "- Introduce una opcion >> ";
         cin >> opcion;
+
+
+
+        // cout <<"hola";
         switch (opcion)
         {
         case 1:
