@@ -160,23 +160,23 @@ void imprimirJugador(BoolsCasilla *listJugadores, int i, int j){
 
     if (listJugadores->J1){
         gotoxy(i + 1, j + 1);
-        SetConsoleTextAttribute(hConsole, 34);
-        cout << " ";
+        SetConsoleTextAttribute(hConsole, 160);
+        cout << "1";
     }
     if (listJugadores->J2){
         gotoxy(i + 2, j + 1);
-        SetConsoleTextAttribute(hConsole, 34);
-        cout << " ";
+        SetConsoleTextAttribute(hConsole, 160);
+        cout << "2";
     }
     if (listJugadores->J3){
         gotoxy(i + 3, j + 1);
-        SetConsoleTextAttribute(hConsole, 34);
-        cout << " ";
+        SetConsoleTextAttribute(hConsole, 160);
+        cout << "3";
     }
     if (listJugadores->J4){
         gotoxy(i + 4, j + 1);
-        SetConsoleTextAttribute(hConsole, 34);
-        cout << " ";
+        SetConsoleTextAttribute(hConsole, 160);
+        cout << "4";
     }
 }
 
