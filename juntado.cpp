@@ -155,7 +155,32 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(hcon, dwPos);
 }
 
-void determinarColor(string tipoCasilla, int i, int j)
+void imprimirJugador(BoolsCasilla *listJugadores, int i, int j){
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    if (listJugadores->J1){
+        gotoxy(i + 1, j + 1);
+        SetConsoleTextAttribute(hConsole, 34);
+        cout << " ";
+    }
+    if (listJugadores->J2){
+        gotoxy(i + 2, j + 1);
+        SetConsoleTextAttribute(hConsole, 34);
+        cout << " ";
+    }
+    if (listJugadores->J3){
+        gotoxy(i + 3, j + 1);
+        SetConsoleTextAttribute(hConsole, 34);
+        cout << " ";
+    }
+    if (listJugadores->J4){
+        gotoxy(i + 4, j + 1);
+        SetConsoleTextAttribute(hConsole, 34);
+        cout << " ";
+    }
+}
+
+void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla * jugadores)
 {
 
     int tamX = 6, tamY = 3;
@@ -204,7 +229,9 @@ void determinarColor(string tipoCasilla, int i, int j)
         n = i;
         m++;
     }
+    imprimirJugador(jugadores, i, j);
 }
+
 
 void imprimirTabla(Casilla *mapa)
 {
@@ -215,15 +242,13 @@ void imprimirTabla(Casilla *mapa)
     float posiciones = valor / 4;
     int i = 1, j = 1;
     gotoxy(i * 6, j * 3);
-    determinarColor(mapa->TipoCasilla, i * 6, j * 3);
-    // cout << " ";
+    determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
     while (i <= posiciones)
     {
         i++;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3);
-        // cout << " ";
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
     }
 
     while (j <= posiciones)
@@ -231,8 +256,7 @@ void imprimirTabla(Casilla *mapa)
         j++;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3);
-        // cout << " ";
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
     }
 
     while (i > 1)
@@ -240,8 +264,7 @@ void imprimirTabla(Casilla *mapa)
         i--;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3);
-        // cout << " ";
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
     }
 
     while (j > 2)
@@ -249,8 +272,7 @@ void imprimirTabla(Casilla *mapa)
         j--;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3);
-        // cout << " ";
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
     }
     SetConsoleTextAttribute(hConsole, 7);
 }
