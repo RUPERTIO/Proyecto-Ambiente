@@ -39,12 +39,14 @@ struct jugador
 uniform_int_distribution<int> distDado(1, 4);
 uniform_int_distribution<int> distCarta(1, 3);
 uniform_int_distribution<int> distDesafio(1, 10);
+
 uniform_int_distribution<int> distCatastrofe(1, 5);
 
 int Dado()
 {
     return distDado(rd);
 }
+
 int carta()
 {
     return distCarta(rd);
@@ -329,11 +331,13 @@ void moverplayer1(jugador *j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         j->ubicacion = j->ubicacion->proxCasilla;
-        if (j->ubicacion->TipoCasilla == "Inicio"){
+        if (j->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             j->vuelta++;
-            if(j->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if (j->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -347,11 +351,13 @@ void moverplayer2(jugador **j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
-        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+        if ((*j)->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             (*j)->vuelta++;
-            if((*j)->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if ((*j)->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -365,11 +371,13 @@ void moverplayer3(jugador **j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
-        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+        if ((*j)->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             (*j)->vuelta++;
-            if((*j)->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if ((*j)->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -383,11 +391,13 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
-        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+        if ((*j)->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             (*j)->vuelta++;
-            if((*j)->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if ((*j)->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -396,6 +406,11 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
 }
 void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TAB)
 {
+    int moneda;
+    int cas;
+    int des;
+    int preg;
+    int prob;
     jugador *aux = *listaPlayer;
     bool catastrofeActivo = false;
     int vueltaJuego = 1;
@@ -422,7 +437,7 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             cin.get();
             if (i == 1)
             {
-                cout << "1\n";
+
                 moverplayer1(aux, dado, &vueltaJuego);
             }
             if (i == 2)
@@ -437,6 +452,77 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             {
                 moverplayer4(&aux, dado, &vueltaJuego);
             }
+            cout << "vuelta " << aux->NumJ << aux->vuelta << endl;
+            cout << "vueltaJuego " << vueltaJuego << endl;
+            cin.get();
+            if (aux->ubicacion->TipoCasilla == "dinero")
+            {
+                prob = carta();
+                if (prob == 1)
+                {
+                    moneda = 1;
+                    aux->dinero = aux->dinero + moneda;
+                }
+                if (prob == 2)
+                {
+                    moneda = 5;
+                    aux->dinero = aux->dinero + moneda;
+                }
+                if (prob == 1)
+                {
+                    moneda = 10;
+                    aux->dinero = aux->dinero + moneda;
+                }
+                cout << TAB << "| HAS OBTENIDO " << moneda << " MONEDAS | \n";
+            }
+            if (aux->ubicacion->TipoCasilla == "vacio")
+            {
+                cout << TAB << "| HAS CAIDO EN UNA CASILLA DE DESCANSO | \n";
+            }
+            if (aux->ubicacion->TipoCasilla == "estudio")
+            {
+                preg = desafio(); // reutilizo desafio porque su parametro seria el mismo de estudio (1,10)
+                // buscar nodo
+                //  pregunta
+                // respuesaA
+                // respuestaB
+                //  cin>>respuesta
+                switch (respuesta)
+                {
+                case /* constant-expression */:
+                    aux->inteligencia = aux->inteligencia + 1;
+                    cout << TAB << "| RESPUESTA CORRECTA, TU INTELIGENCIA A AUMENTADO A " << aux->inteligencia << " | \n";
+                    break;
+                case:
+                    cout << TAB << "| RESPUESTA INCORRECTA NO AUMENTASTE TU INTELIGENCIA | \n";
+                default:
+                    break;
+                }
+            }
+            if (aux->ubicacion->TipoCasilla == "desafio")
+            {
+                des = desafio();
+                // buscar nodo
+                cout << TAB << "| DESAFIO DE NIVEL " << des << " |\n";
+            }
+            if (aux->ubicacion->TipoCasilla == "catastrofe")
+            {
+                cout << TAB << "|!!!!! ALERTA HA INICIADO UNA CATASTROFE !!!!!|\n";
+                cas = catastrofe();
+                // busca nodo
+                // condiciones
+                if (vencido)
+                {
+                    aux->estrellas = aux->estrellas + 1;
+                    aux->ubicacion->TipoCasilla = "vacio";
+                }
+                else
+                {
+                    cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
+                    cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
+                    aux->vida = 0
+                }
+            }
             if (vueltaJuego > 1 && !catastrofeActivo){
                 catastrofeActivo = true;
             }
@@ -447,10 +533,12 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
         aux = *listaPlayer;
     }
 }
+
 void PuntajeFinal(jugador *lista)
 {
-    int a=0, b=0, c=0, d=0;
- 
+
+    int a = 0, b = 0, c = 0, d = 0;
+
     jugador *aux = lista;
 
     a = aux->estrellas * 1000;
@@ -468,31 +556,31 @@ void PuntajeFinal(jugador *lista)
         c = aux->dinero + c;
     }
     if (contadorjg(lista) == 4)
-         aux = aux->proxjg;
+        aux = aux->proxjg;
     d = aux->estrellas * 1000;
     d = (aux->inteligencia * 100) + d;
     d = aux->dinero + d;
     //
-    if ((a > b) &&(a > c) && (a > d))
-        {
-            cout << "JUGADOR 1 GANADOR\n";
-            // AgregarTop(a);
-        }
-        if ((b > a) && (b > c) && (b > d))
-        {
-            cout << "JUGADOR 2 GANADOR\n";
-            // AgregarTop(b);
-        }
-        if ((c> b) && (c > a) && (c > d))
-        {
-            cout << "Jugador 2 GANADOR\n";
-            // AgregarTop(c);
-        }
-        if ((d > b) && (d > c) && (a < d))
-        {
-            cout << "Jugador 4 GANADOR\n";
-            // AgregarTop(d);
-        }
+    if ((a > b) && (a > c) && (a > d))
+    {
+        cout << "JUGADOR 1 GANADOR\n";
+        // AgregarTop(a);
+    }
+    if ((b > a) && (b > c) && (b > d))
+    {
+        cout << "JUGADOR 2 GANADOR\n";
+        // AgregarTop(b);
+    }
+    if ((c > b) && (c > a) && (c > d))
+    {
+        cout << "Jugador 2 GANADOR\n";
+        // AgregarTop(c);
+    }
+    if ((d > b) && (d > c) && (a < d))
+    {
+        cout << "Jugador 4 GANADOR\n";
+        // AgregarTop(d);
+    }
 }
 int main()
 {
@@ -525,7 +613,8 @@ int main()
     }
     archivo.close();
     Casilla *aux = mapa;
-    while (aux->proxCasilla !=NULL){
+    while (aux->proxCasilla != NULL)
+    {
         aux = aux->proxCasilla;
     }
     aux->proxCasilla = mapa;
