@@ -39,12 +39,14 @@ struct jugador
 uniform_int_distribution<int> distDado(1, 4);
 uniform_int_distribution<int> distCarta(1, 3);
 uniform_int_distribution<int> distDesafio(1, 10);
+
 uniform_int_distribution<int> distCatastrofe(1, 5);
 
 int Dado()
 {
     return distDado(rd);
 }
+
 int carta()
 {
     return distCarta(rd);
@@ -400,6 +402,11 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
 }
 void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TAB)
 {
+    int moneda;
+    int cas;
+    int des;
+    int preg;
+    int prob;
     jugador *aux = *listaPlayer;
     int vueltaJuego = 1;
     int dado;
@@ -424,7 +431,7 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             cin.get();
             if (i == 1)
             {
-                cout << "1\n";
+
                 moverplayer1(aux, dado, &vueltaJuego);
             }
             if (i == 2)
@@ -442,6 +449,74 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             cout << "vuelta " << aux->NumJ << aux->vuelta << endl;
             cout << "vueltaJuego " << vueltaJuego << endl;
             cin.get();
+            if (aux->ubicacion->TipoCasilla == "dinero")
+            {
+                prob = carta();
+                if (prob == 1)
+                {
+                    moneda = 1;
+                    aux->dinero = aux->dinero + moneda;
+                }
+                if (prob == 2)
+                {
+                    moneda = 5;
+                    aux->dinero = aux->dinero + moneda;
+                }
+                if (prob == 1)
+                {
+                    moneda = 10;
+                    aux->dinero = aux->dinero + moneda;
+                }
+                cout << TAB << "| HAS OBTENIDO " << moneda << " MONEDAS | \n";
+            }
+            if (aux->ubicacion->TipoCasilla == "vacio")
+            {
+                cout << TAB << "| HAS CAIDO EN UNA CASILLA DE DESCANSO | \n";
+            }
+            if (aux->ubicacion->TipoCasilla == "estudio")
+            {
+                preg = desafio(); // reutilizo desafio porque su parametro seria el mismo de estudio (1,10)
+                // buscar nodo
+                //  pregunta
+                // respuesaA
+                // respuestaB
+                //  cin>>respuesta
+                switch (respuesta)
+                {
+                case /* constant-expression */:
+                    aux->inteligencia = aux->inteligencia + 1;
+                    cout << TAB << "| RESPUESTA CORRECTA, TU INTELIGENCIA A AUMENTADO A " << aux->inteligencia << " | \n";
+                    break;
+                case:
+                    cout << TAB << "| RESPUESTA INCORRECTA NO AUMENTASTE TU INTELIGENCIA | \n";
+                default:
+                    break;
+                }
+            }
+            if (aux->ubicacion->TipoCasilla == "desafio")
+            {
+                des = desafio();
+                // buscar nodo
+                cout << TAB << "| DESAFIO DE NIVEL " << des << " |\n";
+            }
+            if (aux->ubicacion->TipoCasilla == "catastrofe")
+            {
+                cout << TAB << "|!!!!! ALERTA HA INICIADO UNA CATASTROFE !!!!!|\n";
+                cas = catastrofe();
+                // busca nodo
+                // condiciones
+                if (vencido)
+                {
+                    aux->estrellas = aux->estrellas + 1;
+                    aux->ubicacion->TipoCasilla = "vacio";
+                }
+                else
+                {
+                    cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
+                    cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
+                    aux->vida = 0
+                }
+            }
             aux = aux->proxjg;
         }
         aux = *listaPlayer;
@@ -450,7 +525,7 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
 
 void PuntajeFinal(jugador *lista)
 {
-    cout << "a";
+
     int a = 0, b = 0, c = 0, d = 0;
 
     jugador *aux = lista;
