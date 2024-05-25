@@ -186,7 +186,7 @@ void imprimirJugador(BoolsCasilla *listJugadores, int i, int j)
         cout << "4";
     }
 }
-void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla *jugadores)
+void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla *jugadores, bool catastrofeActivo)
 {
 
     int tamX = 6, tamY = 3;
@@ -215,7 +215,11 @@ void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla *jugadores)
     }
     else if (tipoCasilla == "catastrofe")
     {
-        SetConsoleTextAttribute(hConsole, 204);
+        if (catastrofeActivo){
+            SetConsoleTextAttribute(hConsole, 204);
+        } else {
+            SetConsoleTextAttribute(hConsole, 119);
+        }
     }
     else if (tipoCasilla == "vacio")
     {
@@ -238,7 +242,7 @@ void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla *jugadores)
     imprimirJugador(jugadores, i, j);
 }
 
-void imprimirTabla(Casilla *mapa)
+void imprimirTabla(Casilla *mapa, bool catastrofeActivo)
 {
 
     int valor = 36;
@@ -247,13 +251,13 @@ void imprimirTabla(Casilla *mapa)
     float posiciones = valor / 4;
     int i = 1, j = 1;
     gotoxy(i * 6, j * 3);
-    determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
+    determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores, catastrofeActivo);
     while (i <= posiciones)
     {
         i++;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores, catastrofeActivo);
     }
 
     while (j <= posiciones)
@@ -261,7 +265,7 @@ void imprimirTabla(Casilla *mapa)
         j++;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores, catastrofeActivo);
     }
 
     while (i > 1)
@@ -269,7 +273,7 @@ void imprimirTabla(Casilla *mapa)
         i--;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores, catastrofeActivo);
     }
 
     while (j > 2)
@@ -277,7 +281,7 @@ void imprimirTabla(Casilla *mapa)
         j--;
         gotoxy(i * 3, j * 2);
         mapa = mapa->proxCasilla;
-        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores);
+        determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores, catastrofeActivo);
     }
     SetConsoleTextAttribute(hConsole, 7);
 }
@@ -393,18 +397,20 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
 void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TAB)
 {
     jugador *aux = *listaPlayer;
+    bool catastrofeActivo = false;
     int vueltaJuego = 1;
     int dado;
     cin.get();
 
-    while (PartidaActiva)
+    while (vueltaJuego < 3)
     {
 
         aux = *listaPlayer;
-        for (int i = 1; i <= contadorjg(*listaPlayer); i++)
+        int i = 1;
+        while ( vueltaJuego < 3 && i <= contadorjg(*listaPlayer))
         {
             system("cls");
-            imprimirTabla(*mapa);
+            imprimirTabla(*mapa, catastrofeActivo);
             cout << TAB << " TURNO JUGADOR " << i << endl;
 
             MostrarEstadisticas(aux, TAB);
@@ -431,9 +437,11 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             {
                 moverplayer4(&aux, dado, &vueltaJuego);
             }
-            cout << "vuelta "<< aux->NumJ <<aux->vuelta << endl;
-            cout << "vueltaJuego "<< vueltaJuego << endl;
-            cin.get();
+            if (vueltaJuego > 1 && !catastrofeActivo){
+                catastrofeActivo = true;
+            }
+
+            i++;
             aux = aux->proxjg;
         }
         aux = *listaPlayer;
