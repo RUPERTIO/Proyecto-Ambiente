@@ -30,6 +30,7 @@ struct jugador
     int estrellas;
     int dinero;
     int vida;
+    int vuelta;
     bool proteccion;
     Casilla *ubicacion;
     jugador *proxjg;
@@ -94,7 +95,7 @@ Casilla *crearNodoMapa(string valor, string tipo)
     nuevo->Jugadores = new BoolsCasilla;
     return nuevo;
 }
-jugador *crearNodoJG(string numjg)
+jugador *crearNodoJG(string numjg, Casilla *mapa)
 {
     jugador *nuevo = new jugador;
     nuevo->NumJ = numjg;
@@ -102,14 +103,15 @@ jugador *crearNodoJG(string numjg)
     nuevo->estrellas = 0;
     nuevo->dinero = 5;
     nuevo->vida = 4;
+    nuevo->vuelta = 1;
     bool proteccion = false;
-
+    nuevo->ubicacion = mapa;
     nuevo->proxjg = NULL;
     return nuevo;
 }
-void insertarUltimoJG(jugador **inicio, string num)
+void insertarUltimoJG(jugador **inicio, string num, Casilla *mapa)
 {
-    jugador *nuevo = crearNodoJG(num);
+    jugador *nuevo = crearNodoJG(num, mapa);
 
     if (listaVaciajg(*inicio))
     {
@@ -155,32 +157,36 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(hcon, dwPos);
 }
 
-void imprimirJugador(BoolsCasilla *listJugadores, int i, int j){
+void imprimirJugador(BoolsCasilla *listJugadores, int i, int j)
+{
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    if (listJugadores->J1){
+    if (listJugadores->J1)
+    {
         gotoxy(i + 1, j + 1);
         SetConsoleTextAttribute(hConsole, 160);
         cout << "1";
     }
-    if (listJugadores->J2){
+    if (listJugadores->J2)
+    {
         gotoxy(i + 2, j + 1);
         SetConsoleTextAttribute(hConsole, 160);
         cout << "2";
     }
-    if (listJugadores->J3){
+    if (listJugadores->J3)
+    {
         gotoxy(i + 3, j + 1);
         SetConsoleTextAttribute(hConsole, 160);
         cout << "3";
     }
-    if (listJugadores->J4){
+    if (listJugadores->J4)
+    {
         gotoxy(i + 4, j + 1);
         SetConsoleTextAttribute(hConsole, 160);
         cout << "4";
     }
 }
-
-void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla * jugadores)
+void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla *jugadores)
 {
 
     int tamX = 6, tamY = 3;
@@ -231,7 +237,6 @@ void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla * jugadores)
     }
     imprimirJugador(jugadores, i, j);
 }
-
 
 void imprimirTabla(Casilla *mapa)
 {
@@ -301,7 +306,6 @@ int contadorjg(jugador *lista)
 }
 void iniciarjugadores(Casilla **mapa, jugador *lista)
 {
-    cout << "3" << endl;
     (*mapa)->Jugadores->J1 = true;
     (*mapa)->Jugadores->J2 = true;
     int contadorJG = contadorjg(lista);
@@ -314,46 +318,74 @@ void iniciarjugadores(Casilla **mapa, jugador *lista)
         }
     }
 }
-void moverplayer1(jugador **j, int dado)
+void moverplayer1(jugador *j, int dado, int *vueltaJuego)
 {
     int z = 0;
-    (*j)->ubicacion->Jugadores->J1 = false;
+    j->ubicacion->Jugadores->J1 = false;
     while (z != dado)
     {
-        (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
+        j->ubicacion = j->ubicacion->proxCasilla;
+        if (j->ubicacion->TipoCasilla == "Inicio"){
+            cin.get();
+            j->vuelta++;
+            if(j->vuelta > *vueltaJuego){
+            *vueltaJuego= *vueltaJuego+1;
+            }
+        }
         z++;
     }
-    (*j)->ubicacion->Jugadores->J1 = true;
+    j->ubicacion->Jugadores->J1 = true;
 }
-void moverplayer2(jugador **j, int dado)
+void moverplayer2(jugador **j, int dado, int *vueltaJuego)
 {
     int z = 0;
     (*j)->ubicacion->Jugadores->J2 = false;
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
+        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+            cin.get();
+            (*j)->vuelta++;
+            if((*j)->vuelta > *vueltaJuego){
+            *vueltaJuego= *vueltaJuego+1;
+            }
+        }
         z++;
     }
     (*j)->ubicacion->Jugadores->J2 = true;
 }
-void moverplayer3(jugador **j, int dado)
+void moverplayer3(jugador **j, int dado, int *vueltaJuego)
 {
     int z = 0;
     (*j)->ubicacion->Jugadores->J3 = false;
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
+        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+            cin.get();
+            (*j)->vuelta++;
+            if((*j)->vuelta > *vueltaJuego){
+            *vueltaJuego= *vueltaJuego+1;
+            }
+        }
         z++;
     }
     (*j)->ubicacion->Jugadores->J3 = true;
 }
-void moverplayer4(jugador **j, int dado)
+void moverplayer4(jugador **j, int dado, int *vueltaJuego)
 {
     int z = 0;
     (*j)->ubicacion->Jugadores->J4 = false;
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
+        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+            cin.get();
+            (*j)->vuelta++;
+            if((*j)->vuelta > *vueltaJuego){
+            *vueltaJuego= *vueltaJuego+1;
+            }
+        }
         z++;
     }
     (*j)->ubicacion->Jugadores->J4 = true;
@@ -361,11 +393,14 @@ void moverplayer4(jugador **j, int dado)
 void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TAB)
 {
     jugador *aux = *listaPlayer;
+    int vueltaJuego = 1;
     int dado;
     cin.get();
 
     while (PartidaActiva)
     {
+
+        aux = *listaPlayer;
         for (int i = 1; i <= contadorjg(*listaPlayer); i++)
         {
             system("cls");
@@ -373,19 +408,83 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             cout << TAB << " TURNO JUGADOR " << i << endl;
 
             MostrarEstadisticas(aux, TAB);
-            aux = aux->proxjg;
+
             cout << TAB << "Pulse una tecla para lanzar el dado \n";
             cin.get();
             dado = Dado();
-            cout << dado;
+            cout << TAB << "Te ha salido un: " << dado;
             cin.get();
-            if(i=1){
-                moverplayer1(&aux,dado);
+            if (i == 1)
+            {
+                cout << "1\n";
+                moverplayer1(aux, dado, &vueltaJuego);
             }
+            if (i == 2)
+            {
+                moverplayer2(&aux, dado, &vueltaJuego);
+            }
+            if (i == 3)
+            {
+                moverplayer3(&aux, dado, &vueltaJuego);
+            }
+            if (i == 4)
+            {
+                moverplayer4(&aux, dado, &vueltaJuego);
+            }
+            cout << "vuelta "<< aux->NumJ <<aux->vuelta << endl;
+            cout << "vueltaJuego "<< vueltaJuego << endl;
+            cin.get();
+            aux = aux->proxjg;
         }
-
-        PartidaActiva = false;
+        aux = *listaPlayer;
     }
+}
+void PuntajeFinal(jugador *lista)
+{
+    int a=0, b=0, c=0, d=0;
+ 
+    jugador *aux = lista;
+
+    a = aux->estrellas * 1000;
+    a = (aux->inteligencia * 100) + a;
+    a = aux->dinero + a;
+    aux = aux->proxjg;
+    b = aux->estrellas * 1000;
+    b = (aux->inteligencia * 100) + b;
+    b = aux->dinero + b;
+    if (contadorjg(lista) > 2)
+    {
+        aux = aux->proxjg;
+        c = aux->estrellas * 1000;
+        c = (aux->inteligencia * 100) + c;
+        c = aux->dinero + c;
+    }
+    if (contadorjg(lista) == 4)
+         aux = aux->proxjg;
+    d = aux->estrellas * 1000;
+    d = (aux->inteligencia * 100) + d;
+    d = aux->dinero + d;
+    //
+    if ((a > b) &&(a > c) && (a > d))
+        {
+            cout << "JUGADOR 1 GANADOR\n";
+            // AgregarTop(a);
+        }
+        if ((b > a) && (b > c) && (b > d))
+        {
+            cout << "JUGADOR 2 GANADOR\n";
+            // AgregarTop(b);
+        }
+        if ((c> b) && (c > a) && (c > d))
+        {
+            cout << "Jugador 2 GANADOR\n";
+            // AgregarTop(c);
+        }
+        if ((d > b) && (d > c) && (a < d))
+        {
+            cout << "Jugador 4 GANADOR\n";
+            // AgregarTop(d);
+        }
 }
 int main()
 {
@@ -417,6 +516,11 @@ int main()
         //  cout << i << endl;
     }
     archivo.close();
+    Casilla *aux = mapa;
+    while (aux->proxCasilla !=NULL){
+        aux = aux->proxCasilla;
+    }
+    aux->proxCasilla = mapa;
     // mostrarmapa(mapa);
     // HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     // SetConsoleTextAttribute(hConsole, 187);
@@ -436,8 +540,6 @@ int main()
         cout << "5) Salir" << endl;
         cout << "- Introduce una opcion >> ";
         cin >> opcion;
-
-
 
         // cout <<"hola";
         switch (opcion)
@@ -467,7 +569,7 @@ int main()
                     for (int l = 1; l != numjg + 1; l++)
                     {
                         string a = to_string(l);
-                        insertarUltimoJG(&ListaJG, a);
+                        insertarUltimoJG(&ListaJG, a, mapa);
                     }
                     cout << "Se han cargado los jugadores\n";
                     opcion = 5;
