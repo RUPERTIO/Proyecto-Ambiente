@@ -417,12 +417,12 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
     int dado;
     cin.get();
 
-    while (vueltaJuego < 3)
+    while (vueltaJuego < 4)
     {
 
         aux = *listaPlayer;
         int i = 1;
-        while ( vueltaJuego < 3 && i <= contadorjg(*listaPlayer))
+        while ( vueltaJuego < 4 && i <= contadorjg(*listaPlayer))
         {
             system("cls");
             imprimirTabla(*mapa, catastrofeActivo);
@@ -479,53 +479,55 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             {
                 cout << TAB << "| HAS CAIDO EN UNA CASILLA DE DESCANSO | \n";
             }
-            if (aux->ubicacion->TipoCasilla == "estudio")
-            {
-                preg = desafio(); // reutilizo desafio porque su parametro seria el mismo de estudio (1,10)
-                // buscar nodo
-                //  pregunta
-                // respuesaA
-                // respuestaB
-                //  cin>>respuesta
-                switch (respuesta)
-                {
-                case /* constant-expression */:
-                    aux->inteligencia = aux->inteligencia + 1;
-                    cout << TAB << "| RESPUESTA CORRECTA, TU INTELIGENCIA A AUMENTADO A " << aux->inteligencia << " | \n";
-                    break;
-                case:
-                    cout << TAB << "| RESPUESTA INCORRECTA NO AUMENTASTE TU INTELIGENCIA | \n";
-                default:
-                    break;
-                }
-            }
+            // if (aux->ubicacion->TipoCasilla == "estudio")
+            // {
+            //     preg = desafio(); // reutilizo desafio porque su parametro seria el mismo de estudio (1,10)
+            //     // buscar nodo
+            //     //  pregunta
+            //     // respuesaA
+            //     // respuestaB
+            //     //  cin>>respuesta
+            //     switch (respuesta)
+            //     {
+            //     case /* constant-expression */:
+            //         aux->inteligencia = aux->inteligencia + 1;
+            //         cout << TAB << "| RESPUESTA CORRECTA, TU INTELIGENCIA A AUMENTADO A " << aux->inteligencia << " | \n";
+            //         break;
+            //     case:
+            //         cout << TAB << "| RESPUESTA INCORRECTA NO AUMENTASTE TU INTELIGENCIA | \n";
+            //     default:
+            //         break;
+            //     }
+            // }
             if (aux->ubicacion->TipoCasilla == "desafio")
             {
                 des = desafio();
                 // buscar nodo
                 cout << TAB << "| DESAFIO DE NIVEL " << des << " |\n";
             }
-            if (aux->ubicacion->TipoCasilla == "catastrofe")
-            {
-                cout << TAB << "|!!!!! ALERTA HA INICIADO UNA CATASTROFE !!!!!|\n";
-                cas = catastrofe();
-                // busca nodo
-                // condiciones
-                if (vencido)
-                {
-                    aux->estrellas = aux->estrellas + 1;
-                    aux->ubicacion->TipoCasilla = "vacio";
-                }
-                else
-                {
-                    cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
-                    cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
-                    aux->vida = 0
-                }
-            }
+            // if (aux->ubicacion->TipoCasilla == "catastrofe")
+            // {
+            //     cout << TAB << "|!!!!! ALERTA HA INICIADO UNA CATASTROFE !!!!!|\n";
+            //     cas = catastrofe();
+            //     // busca nodo
+            //     // condiciones
+            //     if (vencido)
+            //     {
+            //         aux->estrellas = aux->estrellas + 1;
+            //         aux->ubicacion->TipoCasilla = "vacio";
+            //     }
+            //     else
+            //     {
+            //         cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
+            //         cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
+            //         aux->vida = 0
+            //     }
+            // }
+
             if (vueltaJuego > 1 && !catastrofeActivo){
                 catastrofeActivo = true;
             }
+            cin.get();
 
             i++;
             aux = aux->proxjg;
