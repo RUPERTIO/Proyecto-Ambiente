@@ -325,11 +325,13 @@ void moverplayer1(jugador *j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         j->ubicacion = j->ubicacion->proxCasilla;
-        if (j->ubicacion->TipoCasilla == "Inicio"){
+        if (j->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             j->vuelta++;
-            if(j->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if (j->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -343,11 +345,13 @@ void moverplayer2(jugador **j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
-        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+        if ((*j)->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             (*j)->vuelta++;
-            if((*j)->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if ((*j)->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -361,11 +365,13 @@ void moverplayer3(jugador **j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
-        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+        if ((*j)->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             (*j)->vuelta++;
-            if((*j)->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if ((*j)->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -379,11 +385,13 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
     while (z != dado)
     {
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
-        if ((*j)->ubicacion->TipoCasilla == "Inicio"){
+        if ((*j)->ubicacion->TipoCasilla == "Inicio")
+        {
             cin.get();
             (*j)->vuelta++;
-            if((*j)->vuelta > *vueltaJuego){
-            *vueltaJuego= *vueltaJuego+1;
+            if ((*j)->vuelta > *vueltaJuego)
+            {
+                *vueltaJuego = *vueltaJuego + 1;
             }
         }
         z++;
@@ -431,18 +439,20 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             {
                 moverplayer4(&aux, dado, &vueltaJuego);
             }
-            cout << "vuelta "<< aux->NumJ <<aux->vuelta << endl;
-            cout << "vueltaJuego "<< vueltaJuego << endl;
+            cout << "vuelta " << aux->NumJ << aux->vuelta << endl;
+            cout << "vueltaJuego " << vueltaJuego << endl;
             cin.get();
             aux = aux->proxjg;
         }
         aux = *listaPlayer;
     }
 }
+
 void PuntajeFinal(jugador *lista)
 {
-    int a=0, b=0, c=0, d=0;
- 
+    cout << "a";
+    int a = 0, b = 0, c = 0, d = 0;
+
     jugador *aux = lista;
 
     a = aux->estrellas * 1000;
@@ -460,31 +470,31 @@ void PuntajeFinal(jugador *lista)
         c = aux->dinero + c;
     }
     if (contadorjg(lista) == 4)
-         aux = aux->proxjg;
+        aux = aux->proxjg;
     d = aux->estrellas * 1000;
     d = (aux->inteligencia * 100) + d;
     d = aux->dinero + d;
     //
-    if ((a > b) &&(a > c) && (a > d))
-        {
-            cout << "JUGADOR 1 GANADOR\n";
-            // AgregarTop(a);
-        }
-        if ((b > a) && (b > c) && (b > d))
-        {
-            cout << "JUGADOR 2 GANADOR\n";
-            // AgregarTop(b);
-        }
-        if ((c> b) && (c > a) && (c > d))
-        {
-            cout << "Jugador 2 GANADOR\n";
-            // AgregarTop(c);
-        }
-        if ((d > b) && (d > c) && (a < d))
-        {
-            cout << "Jugador 4 GANADOR\n";
-            // AgregarTop(d);
-        }
+    if ((a > b) && (a > c) && (a > d))
+    {
+        cout << "JUGADOR 1 GANADOR\n";
+        // AgregarTop(a);
+    }
+    if ((b > a) && (b > c) && (b > d))
+    {
+        cout << "JUGADOR 2 GANADOR\n";
+        // AgregarTop(b);
+    }
+    if ((c > b) && (c > a) && (c > d))
+    {
+        cout << "Jugador 2 GANADOR\n";
+        // AgregarTop(c);
+    }
+    if ((d > b) && (d > c) && (a < d))
+    {
+        cout << "Jugador 4 GANADOR\n";
+        // AgregarTop(d);
+    }
 }
 int main()
 {
@@ -517,7 +527,8 @@ int main()
     }
     archivo.close();
     Casilla *aux = mapa;
-    while (aux->proxCasilla !=NULL){
+    while (aux->proxCasilla != NULL)
+    {
         aux = aux->proxCasilla;
     }
     aux->proxCasilla = mapa;
