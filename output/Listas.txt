@@ -1,0 +1,521 @@
+80
+1
+1
+Contaminación del Agua
+Implementar programas de reciclaje y tratamiento de aguas residuales en hogares e industrias para reducir la cantidad de contaminantes que ingresan a los cuerpos de agua
+Permitir el uso de pesticidas y fertilizantes químicos en la agricultura sin regulaciones
+1
+2
+Contaminación del Aire
+Fomentar el uso de transporte publico, bicicletas y caminar
+Construir mas autopistas y estacionamientos para facilitar el uso de automóviles
+1
+3
+Deforestación
+Reforestar  reas degradadas y promover practicas agrícolas sostenibles que no requieran la tala de arboles
+Permitir la deforestación sin control para la expansión urbana o la agricultura industrial
+1
+4 
+Pérdida de Biodiversidad
+Crear y proteger áreas naturales protegidas para preservar el hábitat de las especies en peligro de extinción y promover la conservación de la biodiversidad
+Introducir especies exóticas en ecosistemas frágiles
+1
+5
+Cambio Climático
+Reducir las emisiones de gases de efecto invernadero mediante el uso de fuentes de energía renovable
+Continuar quemando combustibles fósiles para la producción de energía
+1
+6
+Desperdicio de Recursos Naturales
+Implementar políticas de reducción, reutilización y reciclaje para disminuir la cantidad de residuos generados y aprovechar al máximo los recursos disponibles
+Fomentar el consumo excesivo y la cultura del usar y tirar
+1
+7
+Acidificación de los Océanos
+Reducir las emisiones de CO2 a la atmósfera, ya que este gas se disuelve en el agua del océano y la vuelve más ácida, lo que daña los ecosistemas marinos
+Verter directamente los desechos industriales y agrícolas al mar sin tratamiento previo
+1
+8
+Erosión del Suelo
+Implementar prácticas agrícolas sostenibles que protejan el suelo de la erosión, como la agricultura de conservación o la agroforestería
+Utilizar métodos agrícolas intensivos que dejan el suelo expuesto a la erosión del viento y el agua
+1
+9
+Contaminación por Plásticos
+Reducir el uso de plásticos de un solo uso, como bolsas, botellas y envases, y fomentar el uso de alternativas reutilizables o biodegradables
+Continuar utilizando plásticos de un solo uso sin una gestión adecuada de residuos
+1
+10
+Sobrepesca
+Establecer límites de pesca sostenibles y proteger las zonas de reproducción de peces para garantizar la recuperación de las poblaciones de peces y la salud de los ecosistemas marinos
+Permitir la sobrepesca sin control
+2
+1
+Contaminación del Agua
+Desarrollar e implementar tecnologías de tratamiento de aguas residuales más eficientes y sostenibles
+Confiar únicamente en la capacidad de autodepuración de los ecosistemas acuáticos para eliminar la contaminación
+2
+2
+Contaminación del Aire
+Invertir en la investigación y desarrollo de vehículos eléctricos, híbridos o que funcionen con combustibles alternativos
+Imponer restricciones al uso de automóviles sin ofrecer alternativas viables de transporte público o incentivos para el uso de vehículos ecológicos
+2
+3
+Deforestación
+Implementar programas de reforestación a gran escala con especies nativas y promover la silvicultura sostenible para recuperar áreas degradadas y proteger los bosques
+Compensar la deforestación con plantaciones de monocultivos de árboles no nativos
+2
+4
+Pérdida de Biodiversidad
+Combatir el tráfico ilegal de especies silvestres y sus productos
+Introducir programas de control de poblaciones de especies consideradas plagas o invasoras sin considerar el impacto en el ecosistema y las especies nativas
+2
+5
+Cambio Climático
+Invertir en la investigación y desarrollo de tecnologías de captura y almacenamiento de carbono para reducir la cantidad de CO2 en la atmósfera
+Adaptarse a los efectos del cambio climático sin tomar medidas para reducir las emisiones de gases de efecto invernadero y mitigar sus causas
+2
+6
+Desperdicio de Recursos Naturales
+Fomentar la economía circular, donde los residuos se reintegran al proceso productivo en lugar de ser desechados
+Confiar únicamente en el reciclaje como solución al problema del desperdicio, sin abordar el consumo excesivo y la generación de residuos en la fuente
+2
+7
+Acidificación de los Océanos
+Promover el desarrollo de energías renovables, como la energía solar o eólica, para reducir la dependencia de los combustibles fósiles y las emisiones de CO2
+Utilizar la geoingeniería para neutralizar la acidez del océano sin considerar los posibles impactos negativos en los ecosistemas marinos
+2
+8
+Erosión del Suelo
+Incentivar la adopción de prácticas agrícolas sostenibles
+Utilizar fertilizantes y pesticidas químicos sin considerar su impacto negativo en la salud del suelo y la calidad del agua
+2
+9
+Contaminación por Plásticos
+Desarrollar e implementar políticas que prohíban o restrinjan el uso de plásticos de un solo uso, como bolsas, botellas y envases
+Confiar únicamente en la capacidad de los microorganismos para degradar los plásticos sin tomar medidas para reducir su producción y consumo
+2
+10
+Sobrepesca
+Establecer áreas marinas protegidas donde la pesca esté prohibida o restringida para permitir la recuperación de las poblaciones de peces
+Confiar en los mecanismos de autorregulación de las poblaciones de peces sin implementar medidas de control de pesca y gestión sostenible de los recursos pesqueros
+3
+1
+Contaminación del Agua
+Desarrollar sistemas descentralizados de tratamiento y reutilización de aguas residuales para reducir la dependencia de grandes infraestructuras y promover la gestión sostenible del agua a nivel local
+Confiar únicamente en soluciones tecnológicas costosas y centralizadas para tratar el agua contaminada, sin considerar la viabilidad económica y la sostenibilidad ambiental a largo plazo
+3
+2
+Contaminación del Aire
+Implementar políticas de transporte sostenibles que fomenten el uso de transporte público eficiente, movilidad activa (ciclismo, caminar) y vehículos eléctricos o de bajas emisiones
+Imponer restricciones vehiculares sin ofrecer alternativas viables de transporte y sin abordar las causas estructurales de la contaminación del aire, como la dependencia de combustibles fósiles
+3
+3
+Deforestación
+Promover la restauración ecológica de áreas degradadas y la reforestación con especies nativas, utilizando técnicas de silvicultura sostenible y agroforestería
+Enfocarse únicamente en la reforestación con monocultivos de árboles de rápido crecimiento para la producción forestal o la captura de carbono, sin considerar la biodiversidad y la funcionalidad ecológica de los bosques
+3
+4
+Pérdida de Biodiversidad
+Establecer corredores biológicos que conecten áreas protegidas y hábitats fragmentados para permitir el movimiento de especies y la conservación de la conectividad ecológica
+Enfocarse únicamente en la conservación de especies en peligro de extinción en zoológicos o bancos de germoplasma, sin abordar las amenazas que causan la pérdida de biodiversidad en sus hábitats naturales
+3
+5
+Cambio Climático
+Desarrollar e implementar estrategias de mitigación y adaptación al cambio climático a nivel local, nacional e internacional, integrando medidas de reducción de emisiones, eficiencia energética y gestión de riesgos climáticos
+Confiar únicamente en soluciones tecnológicas a gran escala para mitigar el cambio climático, sin abordar las causas estructurales del problema, como el modelo de desarrollo insostenible y la dependencia de combustibles fósiles
+3
+6
+Desperdicio de Recursos Naturales
+Implementar políticas de economía circular a nivel nacional y regional, fomentando la reutilización, reparación, remanufactura y reciclaje de materiales para reducir la extracción de recursos vírgenes
+Enfocarse únicamente en el reciclaje como solución al problema del desperdicio, sin abordar el consumo excesivo, la obsolescencia programada y la generación de residuos en la fuente
+3
+7
+Acidificación de los Océanos
+Promover la descarbonización de la economía mediante la transición hacia energías renovables y la reducción de emisiones de CO2
+Utilizar técnicas de geoingeniería para neutralizar la acidez del océano sin considerar los posibles impactos negativos en los ecosistemas marinos y la falta de soluciones permanentes al problema
+3
+8
+Erosión del Suelo
+Fomentar la adopción de prácticas agrícolas regenerativas que mejoren la salud del suelo, aumenten su contenido de materia orgánica y reduzcan la erosión, como la agricultura de conservación o la permacultura
+Utilizar fertilizantes y pesticidas químicos sin considerar su impacto negativo en la salud del suelo, la calidad del agua y la biodiversidad
+3
+9
+Contaminación por Plásticos
+Rediseñar productos y empaques para reducir el uso de plásticos de un solo uso y promover materiales biodegradables o compostables
+Enfocarse únicamente en la limpieza de desechos plásticos del medio ambiente sin abordar las causas fundamentales del problema, como la producción y el consumo excesivo de plásticos
+3
+10
+Sobrepesca
+Implementar sistemas de pesca sostenible basados en cuotas de captura, períodos de veda y áreas marinas protegidas, asegurando la explotación responsable de los recursos pesqueros
+Confiar en los mecanismos de autorregulación de las poblaciones de peces sin implementar medidas de control de pesca y sin considerar las necesidades de las comunidades que dependen de la pesca para su subsistencia
+4
+1
+Contaminación del Agua
+Desarrollar tecnologías de nanofiltración y membranas de ósmosis inversa de bajo consumo energético para la desalación y tratamiento de aguas residuales, permitiendo la reutilización segura del agua para diversos usos
+Confiar únicamente en métodos tradicionales de tratamiento de aguas residuales que son costosos, energéticamente intensivos y no siempre garantizan la calidad del agua para su reutilización
+4
+2
+Contaminación del Aire
+Fomentar la investigación y desarrollo de tecnologías de captura de carbono a gran escala, como la captura directa de aire o la bioenergía con captura y almacenamiento de carbono (BECCS), para eliminar CO2 de la atmósfera
+Depender únicamente de la transición a energías renovables para reducir las emisiones de CO2, sin considerar la necesidad de eliminar el CO2 ya presente en la atmósfera para mitigar el cambio climático
+4
+3
+Deforestación
+Implementar mecanismos de pago por servicios ambientales para recompensar a las comunidades locales por la conservación de bosques y la adopción de prácticas agrícolas sostenibles que protejan los ecosistemas forestales
+Enfocarse únicamente en la aplicación de leyes y regulaciones para prevenir la deforestación, sin considerar las necesidades socioeconómicas de las comunidades que dependen de los bosques para su subsistencia
+4
+4
+Pérdida de Biodiversidad
+Promover la investigación y el desarrollo de tecnologías de monitoreo y seguimiento de la biodiversidad a través de sensores remotos, inteligencia artificial y análisis de datos, para mejorar la comprensión y gestión de la biodiversidad
+Confiar únicamente en métodos tradicionales de monitoreo de la biodiversidad que son costosos, lentos y no siempre brindan información completa sobre el estado de las especies y ecosistemas
+4
+5
+Cambio Climático
+Implementar políticas de desarrollo bajo en carbono en todos los sectores de la economía, incluyendo la industria, el transporte, la agricultura y los edificios, para lograr una descarbonización profunda y alcanzar la neutralidad de carbono
+Enfocarse únicamente en la reducción de emisiones en un solo sector, como la energía, sin abordar las emisiones de otros sectores y sin considerar la necesidad de un cambio sistémico en la forma en que producimos y consumimos bienes y servicios
+4
+6
+Desperdicio de Recursos Naturales
+Desarrollar modelos de negocio circulares en todos los sectores económicos, donde los productos y materiales se reutilizan, reparan, remanufacturan y reciclan para minimizar la generación de residuos y maximizar la eficiencia en el uso de recursos
+Confiar únicamente en el reciclaje como solución al problema del desperdicio, sin abordar el diseño de productos duraderos, reparables y reciclables, y sin promover cambios en los patrones de consumo
+4
+7
+Acidificación de los Océanos
+Promover la investigación y desarrollo de técnicas de restauración de los ecosistemas marinos afectados por la acidificación, como la restauración de arrecifes de coral o la calcificación asistida de especies marinas
+Confiar únicamente en la reducción de las emisiones de CO2 para abordar la acidificación del océano, sin considerar la necesidad de medidas directas para restaurar los ecosistemas marinos afectados y aumentar su resiliencia
+4
+8
+Erosión del Suelo
+Implementar políticas de uso sustentable del suelo que promuevan la agricultura regenerativa, la agroforestería y la ganadería extensiva, para mejorar la salud del suelo, aumentar su contenido de materia orgánica y reducir la erosión
+Enfocarse únicamente en el uso de fertilizantes y pesticidas químicos para aumentar la productividad agrícola, sin considerar el impacto negativo de estas prácticas en la salud del suelo y la calidad del agua
+4
+9
+Contaminación por Plásticos
+Desarrollar materiales biodegradables o compostables a base de recursos renovables, como bioplásticos, para reemplazar los plásticos de un solo uso y reducir la contaminación ambiental
+Confiar únicamente en la limpieza de desechos plásticos del medio ambiente sin abordar las causas fundamentales del problema, como la producción y el consumo excesivo de plásticos
+4
+10
+Sobrepesca
+Implementar sistemas de gestión pesquera basados en el enfoque precautorio, donde las cuotas de captura se establecen por debajo de los niveles máximos sostenibles para asegurar la recuperación de las poblaciones de peces y la sostenibilidad de la pesca
+Confiar en la capacidad natural de los peces para recuperarse sin implementar medidas de control de pesca es una falsa solución que ignora el impacto humano en la sobreexplotación de los recursos marinos
+5
+1
+Contaminación del Agua
+Implementar sistemas descentralizados de tratamiento y reutilización de aguas residuales para reducir la dependencia de grandes infraestructuras y promover la gestión sostenible del agua a nivel local
+Enfocarse únicamente en la limpieza superficial de playas y ríos sin abordar las fuentes de contaminación
+5
+2
+Contaminación del Aire
+Fomentar el uso de transporte público eléctrico mediante la implementación de sistemas de transporte público modernos, eficientes y accesibles, junto con la inversión en infraestructura de carga para vehículos eléctricos
+Restringir el uso de vehículos particulares sin ofrecer alternativas de transporte público accesibles y eficientes
+5
+3
+Deforestación
+Promover la agroforestería como sistema de producción agrícola que combina cultivos con árboles forestales, generando beneficios económicos para las comunidades locales, mejorando la calidad del suelo y contribuyendo a la conservación de la biodiversidad forestal
+Establecer plantaciones de monocultivos de árboles de rápido crecimiento para la producción de madera o biomasa, sin considerar la biodiversidad del ecosistema y los impactos ambientales a largo plazo
+5
+4
+Pérdida de Biodiversidad
+Establecer corredores biológicos que conecten áreas protegidas y hábitats fragmentados, permitiendo el movimiento de especies y la conservación de la conectividad ecológica
+Enfocarse únicamente en la creación de áreas protegidas sin considerar la conectividad entre ellas
+5
+5
+Cambio Climático
+Implementar estrategias de eficiencia energética en edificios, viviendas e industrias, mediante la adopción de medidas como la mejora del aislamiento térmico, el uso de electrodomésticos eficientes y la implementación de sistemas de iluminación LED
+Confiar únicamente en la captura y almacenamiento de carbono (CCS) como solución al cambio climático sin abordar las fuentes de emisiones de gases de efecto invernadero
+5
+6
+Desperdicio de Recursos Naturales
+Promover el consumo responsable y sostenible de bienes y servicios, fomentando la compra de productos duraderos, reparables y reutilizables, y reduciendo el consumo de productos innecesarios o de un solo uso
+Incentivar el consumo de productos mediante campañas publicitarias y estrategias de marketing agresivas, sin considerar el impacto ambiental y social de la producción y el consumo excesivo
+5
+7
+Contaminación del Suelo
+Fomentar la agricultura orgánica como práctica agrícola que evita el uso de fertilizantes y pesticidas químicos, promoviendo la salud del suelo, la producción de alimentos saludables y la conservación de la biodiversidad
+Aplicar únicamente medidas de remediación para limpiar sitios contaminados sin considerar la prevención de la contaminación del suelo en la fuente
+5
+8
+Sobreexplotación de Recursos Naturales
+Adoptar prácticas de pesca sostenible como la pesca artesanal, la pesca con artes de pesca selectivas y la implementación de cuotas de pesca, para asegurar la sostenibilidad de los recursos pesqueros y proteger la biodiversidad marina
+Permitir la pesca indiscriminada sin implementar medidas de control y regulación, lo que puede llevar al agotamiento de los recursos pesqueros y la degradación de los ecosistemas marinos
+5
+9
+Erosión del Suelo
+Implementar prácticas de agricultura de conservación como la siembra directa, la rotación de cultivos y la cobertura vegetal permanente, para reducir la erosión del suelo, mejorar la calidad del suelo y aumentar la productividad agrícola
+Enfocarse únicamente en la reforestación de áreas erosionadas sin considerar la implementación de prácticas agrícolas sostenibles
+5
+10
+Cambio Climático
+Promover la transición hacia energías renovables como la energía solar, eólica e hidroeléctrica, mediante la inversión en infraestructura renovable, el desarrollo de tecnologías limpias y la implementación de políticas que incentiven el uso de energías renovables
+Depender únicamente de combustibles fósiles como fuente de energía, sin considerar el desarrollo y la adopción de energías renovables
+6
+1
+Contaminación del Agua
+Implementación a gran escala de sistemas de tratamiento de aguas residuales avanzados y tecnologías de desalinización combinadas con la reutilización y el reciclaje de agua
+Construcción de represas masivas y desvío de ríos para aumentar el suministro de agua
+6
+2
+Contaminación del Aire
+Transición global hacia una energía 100% renovable, junto con la implementación de tecnologías de captura y almacenamiento de carbono y la electrificación del transporte
+Implementación de controles de emisiones más estrictos para las industrias existentes
+6
+3
+Deforestación
+Establecimiento de un marco global vinculante para la deforestación cero, junto con la restauración a gran escala de bosques y la promoción de prácticas agrícolas sostenibles
+Plantación de monocultivos de árboles de rápido crecimiento para compensar la deforestación
+6
+4
+Pérdida de Biodiversidad
+Creación de una red global de áreas protegidas interconectadas que abarque al menos el 30% de la superficie terrestre y marina, junto con la implementación de estrategias de manejo sostenible de la vida silvestre y la lucha contra el tráfico ilegal de vida silvestre
+Enfocarse en la conservación de especies emblemáticas o carismáticas, descuidando la protección de la biodiversidad funcional y los ecosistemas
+6
+5
+Cambio Climático
+Implementación de un acuerdo global ambicioso para limitar el calentamiento global a 1.5°C por encima de los niveles preindustriales, junto con la adaptación a los impactos inevitables del cambio climático
+Negar o minimizar la realidad del cambio climático y sus impactos
+6
+6
+Desperdicio de Recursos Naturales
+Transición hacia una economía circular que minimice el desperdicio y maximice la reutilización y el reciclaje de recursos, junto con el desarrollo de materiales biodegradables y compostables
+Aumento de la extracción de recursos naturales para satisfacer la demanda creciente
+6
+7
+Acidificación de los Océanos
+Reducción drástica de las emisiones de dióxido de carbono, junto con la investigación y el desarrollo de tecnologías para la eliminación de CO2 del océano
+Aplicación de cal o sustancias alcalinas al océano para neutralizar la acidez
+6
+8
+Erosión del Suelo
+Implementación a gran escala de prácticas agrícolas sostenibles, como la agricultura de conservación y la agroforestería, junto con la restauración de tierras degradadas y la protección de la biodiversidad del suelo
+Aplicar fertilizantes químicos y pesticidas de manera intensiva para aumentar la productividad agrícola
+6
+9
+Contaminación por Plásticos
+Prohibición global de la producción y el uso de plásticos de un solo uso, junto con el desarrollo de alternativas biodegradables y compostables, la mejora de los sistemas de reciclaje y la promoción de una cultura de consumo responsable
+Incineración de residuos plásticos como solución para eliminarlos
+6
+10
+Sobrepesca
+Implementación de un sistema global de gestión pesquera sostenible basado en la ciencia, junto con la creación de áreas marinas protegidas y la promoción de prácticas de pesca responsable
+Aumento de los niveles de pesca para satisfacer la demanda creciente de productos del mar
+7
+1
+Contaminación del Agua
+Implementar un sistema global de gestión del agua que integre la infraestructura de agua dulce y salada, la reutilización y el reciclaje de agua a gran escala, la agricultura sostenible y la restauración de ecosistemas hídricos
+Desarrollar tecnologías de desalinización a gran escala sin considerar los impactos ambientales y sociales, como la salinización del suelo y el aumento del consumo de energía
+7
+2
+Contaminación del Aire
+Implementar una transición global hacia una economía de energía limpia 100% renovable, junto con la captura y almacenamiento de carbono a gran escala, la electrificación del transporte y la transformación de la industria hacia procesos más limpios
+Imponer regulaciones de control de emisiones más estrictas sin considerar las necesidades económicas y sociales de las comunidades y las industrias afectadas
+7
+3
+Deforestación
+Establecer un marco legal global vinculante para la deforestación cero, junto con la restauración a gran escala de bosques, la promoción de prácticas agrícolas sostenibles y el desarrollo de alternativas económicas viables para las comunidades que dependen de la deforestación
+Implementar plantaciones de monocultivos de árboles de rápido crecimiento para compensar la deforestación, sin considerar la biodiversidad y la complejidad de los ecosistemas forestales
+7
+4
+Pérdida de Biodiversidad
+Crear una red global interconectada de áreas protegidas que abarque al menos el 50% de la superficie terrestre y marina, junto con la implementación de estrategias de manejo sostenible de la vida silvestre, la lucha contra el tráfico ilegal de vida silvestre y la promoción de la educación ambiental y la conciencia pública
+Enfocarse en la conservación de especies emblemáticas o carismáticas, descuidando la protección de la biodiversidad funcional y los ecosistemas
+7
+5
+Cambio Climático
+Implementar un acuerdo global ambicioso para limitar el calentamiento global a 1.5°C por encima de los niveles preindustriales, junto con la adaptación a los impactos inevitables del cambio climático, la promoción de la resiliencia climática en las comunidades y la investigación y desarrollo de tecnologías de captura y almacenamiento de carbono de cuarta generación
+Negar o minimizar la realidad del cambio climático y sus impactos, o confiar únicamente en soluciones tecnológicas sin abordar las causas sistémicas del problema
+7
+6
+Desperdicio de Recursos Naturales
+Implementar una transición global hacia una economía circular que maximice la reutilización, el reciclaje y la reparación de materiales, minimice la generación de residuos y promueva el diseño de productos duraderos y biodegradables
+Implementar incineración o vertido a gran escala de residuos como solución para eliminarlos, sin considerar los impactos ambientales y de salud pública asociados a estas prácticas
+7
+7
+Acidificación de los Océanos
+Implementar un acuerdo global ambicioso para reducir drásticamente las emisiones de dióxido de carbono, junto con la investigación y el desarrollo de tecnologías a gran escala para la eliminación de CO2 del océano, como la biomineralización asistida y la electroquímica marina
+Aplicar cal o sustancias alcalinas al océano para neutralizar la acidez, sin considerar los impactos potenciales en los ecosistemas marinos y la complejidad de los procesos bioquímicos oceánicos
+7
+8
+Erosión del Suelo
+Implementar a gran escala prácticas agrícolas sostenibles como la agricultura de conservación, la agroforestería y la agricultura regenerativa, junto con la restauración de tierras degradadas, la protección de la biodiversidad del suelo y la promoción de la educación y la conciencia ambiental entre los agricultores
+Aplicar fertilizantes químicos y pesticidas de manera intensiva para aumentar la productividad agrícola, sin considerar los impactos negativos en la salud del suelo, la contaminación del agua y la biodiversidad
+7
+9
+Contaminación por Plásticos
+Implementar una prohibición global de la producción y el uso de plásticos de un solo uso, junto con el desarrollo de alternativas biodegradables y compostables a gran escala, la mejora de los sistemas de reciclaje y la promoción de una cultura de consumo responsable y de economía circular
+Incineración de residuos plásticos a gran escala como solución para eliminarlos, sin considerar los impactos en la calidad del aire, la liberación de gases de efecto invernadero y la contaminación del suelo
+7
+10
+Sobrepesca
+Implementar un sistema global de gestión pesquera sostenible basado en la ciencia, junto con la creación de áreas marinas protegidas a gran escala, la promoción de prácticas de pesca responsable y la lucha contra la pesca ilegal, no reglamentada y sin control
+Aumentar los niveles de pesca para satisfacer la demanda creciente de productos del mar, sin considerar la capacidad de carga de los ecosistemas marinos y los impactos en la biodiversidad
+8
+1
+Contaminación del Agua
+Implementar un sistema global de gestión del agua que integre la infraestructura de agua dulce y salada a gran escala, la reutilización y el reciclaje de agua con tecnologías de última generación, la agricultura sostenible que minimice la contaminación hídrica, la restauración de ecosistemas hídricos degradados y la promoción de una cultura de consumo responsable del agua
+Desarrollar tecnologías de desalinización a gran escala sin considerar los impactos ambientales y sociales asociados, como la salinización del suelo, el aumento del consumo de energía y la generación de residuos tóxicos
+8
+2
+Contaminación del Aire
+Implementar una transición global hacia una economía de energía limpia 100% renovable, junto con la captura y almacenamiento de carbono a gran escala utilizando tecnologías de última generación, la electrificación total del transporte, la transformación de la industria hacia procesos limpios y eficientes, y la promoción de la movilidad sostenible y la reducción de la dependencia de los combustibles fósiles
+Imponer regulaciones de control de emisiones más estrictas sin considerar las necesidades económicas y sociales de las comunidades y las industrias afectadas, lo que podría generar resistencia y falta de cumplimiento, limitando su efectividad a largo plazo
+8
+3
+Deforestación
+Establecer un marco legal global vinculante para la deforestación cero, junto con la restauración a gran escala de bosques utilizando técnicas de reforestación nativa y asistida, la promoción de prácticas agrícolas sostenibles que integren la conservación de los bosques, el desarrollo de alternativas económicas viables para las comunidades que dependen de la deforestación, la educación ambiental y la conciencia pública sobre la importancia de los bosques, y la lucha contra la tala ilegal y el comercio ilegal de madera
+Implementar plantaciones de monocultivos de árboles de rápido crecimiento para compensar la deforestación, sin considerar la biodiversidad y la complejidad de los ecosistemas forestales, lo que podría tener impactos negativos sobre la biodiversidad, la salud del suelo, los ciclos del agua y la calidad del aire
+8
+4
+Pérdida de Biodiversidad
+Crear una red global interconectada de áreas protegidas que abarque al menos el 75% de la superficie terrestre y marina, junto con la implementación de estrategias de manejo sostenible de la vida silvestre que integren el conocimiento local y tradicional, la lucha contra el tráfico ilegal de vida silvestre utilizando tecnologías de vanguardia y la cooperación internacional para la conservación de especies en peligro de extinción, la promoción de la educación ambiental y la conciencia pública sobre la importancia de la biodiversidad, y la investigación y el desarrollo de tecnologías para la restauración de ecosistemas degradados
+Enfocarse en la conservación de especies emblemáticas o carismáticas, descuidando la protección de la biodiversidad funcional y los ecosistemas, lo que podría tener consecuencias negativas para la salud de los ecosistemas y los servicios ecosistémicos que brindan
+8
+5
+Cambio Climático
+Implementar un acuerdo global ambicioso para limitar el calentamiento global a 1.5°C por encima de los niveles preindustriales, junto con la adaptación a los impactos inevitables del cambio climático utilizando tecnologías resilientes y climáticamente inteligentes, la promoción de la resiliencia climática en las comunidades y los ecosistemas, la investigación y el desarrollo de tecnologías de captura y almacenamiento de carbono de cuarta generación, la transición hacia una economía circular y baja en carbono, y la cooperación internacional para compartir conocimientos, tecnologías y recursos financieros
+Negar o minimizar la realidad del cambio climático y sus impactos, o confiar únicamente en soluciones tecnológicas sin abordar las causas sistémicas del problema, lo que podría generar resultados ineficaces y exacerbar los impactos del cambio climático
+8
+6
+Desperdicio de Recursos Naturales
+Implementar una transición global hacia una economía circular que maximice la reutilización, el reciclaje y la reparación de materiales a gran escala, minimice la generación de residuos, promueva el diseño de productos duraderos y biodegradables, y fomente la adopción de modelos de consumo responsable y de economía compartida
+Implementar incineración o vertido a gran escala de residuos como solución para eliminarlos, sin considerar los impactos ambientales y de salud pública asociados a estas prácticas, lo que podría generar nuevos problemas ambientales y sociales
+8
+7
+Acidificación de los Océanos
+Implementar un acuerdo global ambicioso para reducir drásticamente las emisiones de dióxido de carbono, junto con la investigación y el desarrollo de tecnologías a gran escala para la eliminación de CO2 del océano, como la biomineralización asistida y la electroquímica marina, la protección y restauración de ecosistemas marinos vulnerables a la acidificación, la promoción de prácticas pesqueras sostenibles que minimicen la acidificación local, la educación ambiental y la conciencia pública sobre la importancia de los océanos, y la cooperación internacional para la investigación y el desarrollo de soluciones innovadoras
+Aplicar cal o sustancias alcalinas al océano para neutralizar la acidez, sin considerar los impactos potenciales en los ecosistemas marinos y la complejidad de los procesos bioquímicos oceánicos
+8
+8
+Erosión del Suelo
+Implementar a gran escala prácticas agrícolas sostenibles como la agricultura de conservación, la agroforestería y la agricultura regenerativa, junto con la restauración de tierras degradadas utilizando técnicas innovadoras y resilientes, la protección de la biodiversidad del suelo, la promoción de la educación ambiental y la conciencia pública entre los agricultores, la investigación y el desarrollo de tecnologías para la conservación y mejora del suelo, y la cooperación internacional para compartir conocimientos y experiencias en agricultura sostenible
+Aplicar fertilizantes químicos y pesticidas de manera intensiva para aumentar la productividad agrícola, sin considerar los impactos negativos en la salud del suelo, la contaminación del agua y la biodiversidad
+8
+9
+Contaminación por Plásticos
+Implementar una prohibición global de la producción y el uso de plásticos de un solo uso, junto con el desarrollo de alternativas biodegradables y compostables a gran escala, la mejora de los sistemas de reciclaje y reutilización a nivel global, la promoción de una cultura de consumo responsable y de economía circular, la educación ambiental y la conciencia pública sobre los impactos del plástico en el medio ambiente, la investigación y el desarrollo de tecnologías para la limpieza de residuos plásticos del océano y la tierra, y la cooperación internacional para establecer un marco legal y regulatorio global para la gestión del plástico
+Incineración de residuos plásticos a gran escala como solución para eliminarlos, sin considerar los impactos en la calidad del aire, la liberación de gases de efecto invernadero y la contaminación del suelo
+8
+10
+Sobrepesca
+Implementar un sistema global de gestión pesquera sostenible basado en la ciencia, junto con la creación de áreas marinas protegidas a gran escala que abarquen al menos el 30% de la superficie marina, la promoción de prácticas de pesca responsable que minimicen el impacto en las poblaciones de peces y ecosistemas marinos, la lucha contra la pesca ilegal, no reglamentada y sin control utilizando tecnologías de vanguardia y la cooperación internacional para la gestión sostenible de las poblaciones de peces, la educación ambiental y la conciencia pública sobre la importancia de la pesca sostenible, y la investigación y el desarrollo de tecnologías para la acuicultura sostenible y la diversificación de la producción pesquera
+Aumentar los niveles de pesca para satisfacer la demanda creciente de productos del mar, sin considerar la capacidad de carga de los ecosistemas marinos y los impactos en la biodiversidad
+5
+Terremoto
+Implementar un sistema de evacuación rápida y eficiente utilizando rutas predefinidas, transporte público y asistencia para personas con movilidad reducida
+Permanecer en zonas de riesgo o intentar regresar a zonas afectadas antes de que sea seguro
+Tsunami
+Evacuar rápidamente las zonas costeras hacia zonas elevadas o refugios seguros predefinidos
+Intentar refugiarse en edificios altos o subir a la azotea
+Huracán
+Dirigirse a refugios seguros predefinidos o buscar alojamiento en zonas alejadas de la trayectoria del huracán
+Permanecer en el interior de una vivienda o edificio que no está adecuadamente preparado para resistir un huracán
+Incendio Forestal
+Dirigirse a refugios seguros predefinidos o buscar alojamiento en zonas alejadas del fuego
+Intentar combatir el fuego por cuenta propia o regresar a zonas afectadas antes de que sea seguro
+Inundación
+Utilizar rutas de evacuación predefinidas y medios de transporte alternativos como barcos, vehículos todoterreno o animales de carga
+Permanecer en zonas de riesgo o intentar regresar a zonas afectadas antes de que sea seguro
+10
+¿Es más efectivo enfocarse en la limpieza de desechos ya presentes en playas y ríos, o en la prevención de su llegada a estos ecosistemas?
+La prevención de la llegada de desechos a playas y ríos es más efectiva a largo plazo, ya que reduce la necesidad de limpieza constante y protege los ecosistemas de manera integral.
+La limpieza de desechos ya presentes en playas y ríos es la única forma efectiva de eliminar la contaminación y restaurar la calidad ambiental de estos ecosistemas
+¿Es recomendable plantar árboles de rápido crecimiento en áreas deforestadas, incluso si no son especies nativas de la región?
+En algunos casos, la plantación de árboles de rápido crecimiento puede ser una solución temporal para la reforestación, siempre y cuando se considere la introducción posterior de especies nativas a medida que el ecosistema se recupera.
+La reforestación con especies nativas es fundamental para preservar la biodiversidad y los ecosistemas locales, ya que estas especies están adaptadas a las condiciones climáticas y ecológicas específicas de la región
+¿Es suficiente con promover el uso de transporte público y vehículos eléctricos para reducir significativamente las emisiones de gases de efecto invernadero?
+La promoción del transporte público y vehículos eléctricos, junto con otras medidas complementarias, puede contribuir a una reducción considerable de las emisiones de gases de efecto invernadero y a la lucha contra el cambio climático.
+La promoción del transporte público y vehículos eléctricos es un paso importante, pero no es suficiente por sí solo. Se requieren medidas adicionales como la inversión en energías renovables, la eficiencia energética y la reducción del consumo general de energía para lograr una reducción significativa de las emisiones
+¿La energía solar y eólica son fuentes de energía renovables y sostenibles que no generan impactos ambientales negativos?
+La energía solar y eólica son fuentes de energía renovables y sostenibles que, si se implementan de manera responsable y con mitigación de impactos, pueden generar electricidad con un menor impacto ambiental en comparación con los combustibles fósiles.
+Si bien la energía solar y eólica son fuentes de energía renovables, su instalación y operación pueden tener algunos impactos ambientales, como la deforestación para la construcción de parques eólicos o el uso de materiales con huella de carbono en la fabricación de paneles solares
+¿Es suficiente con crear nuevas áreas protegidas para conservar la biodiversidad y proteger los ecosistemas naturales?
+La creación y mantenimiento de reservas naturales, junto con otras medidas de conservación y manejo sostenible, son esenciales para proteger la biodiversidad, preservar los ecosistemas naturales y mantener los servicios ecosistémicos que benefician a las personas.
+La creación de nuevas áreas protegidas es un paso importante, pero no es suficiente por sí solo. Se requiere una gestión efectiva de estas áreas, la lucha contra la caza furtiva y la tala ilegal, y la promoción de prácticas sostenibles en zonas aledañas para garantizar la conservación a largo plazo
+¿Es más efectivo enfocarse en la educación ambiental de niños y jóvenes, o en la de adultos y tomadores de decisiones?
+La educación ambiental debe ser un proceso continuo y transversal que involucre a todas las edades y grupos sociales. Es fundamental educar a niños y jóvenes para fomentar la conciencia ambiental desde temprana edad, pero también es necesario educar a adultos y tomadores de decisiones para que puedan tomar decisiones responsables y promover el desarrollo sostenible.
+La educación ambiental debe abarcar a todas las edades y grupos sociales. Si bien los niños y jóvenes son receptivos a nuevos conocimientos y pueden ser agentes de cambio, la participación de adultos y tomadores de decisiones es crucial para implementar políticas públicas y acciones concretas en favor del medio ambiente
+¿Es suficiente con reducir el uso de pesticidas y fertilizantes químicos para lograr una agricultura sostenible?
+La promoción de prácticas agrícolas sostenibles, que incluyan la reducción del uso de químicos y la implementación de técnicas agroecológicas, es fundamental para proteger la salud del suelo y el agua, reducir la contaminación ambiental y garantizar la producción de alimentos de manera sostenible.
+La reducción del uso de pesticidas y fertilizantes químicos es un paso importante, pero no es suficiente por sí solo. La agricultura sostenible implica un conjunto de prácticas que incluyen la diversificación de cultivos, la rotación de cultivos, la agricultura orgánica, la gestión del suelo y la conservación del agua, entre otras
+¿Es suficiente con reciclar los residuos para reducir su impacto ambiental?
+El reciclaje, junto con la reducción en la fuente, la reutilización y el compostaje, forman parte de una jerarquía de gestión de residuos integral y sostenible que busca minimizar el impacto ambiental y aprovechar al máximo los recursos.
+El reciclaje es una práctica importante, pero no es la única solución para la gestión de residuos. Se debe priorizar la reducción en la fuente, la reutilización y el compostaje para minimizar la cantidad de residuos que van a parar a vertederos
+¿Es suficiente con plantar árboles para restaurar un hábitat natural degradado?
+La restauración de hábitats naturales degradados, si se realiza de manera adecuada y considerando la ecología del lugar, puede contribuir a la recuperación de la biodiversidad, mejorar la calidad del suelo y del agua, y fortalecer la resiliencia de los ecosistemas frente a los impactos del cambio climático.
+La restauración de hábitats naturales degradados es un proceso complejo que requiere un enfoque integral que va más allá de la simple plantación de árboles. Se debe considerar la restauración de la biodiversidad original, la recuperación de los procesos ecológicos y la reintegración del hábitat al ecosistema circundante
+¿Es suficiente con proteger el hábitat de una especie en peligro de extinción para garantizar su supervivencia?
+La protección del hábitat, junto con medidas de conservación específicas para cada especie, es crucial para evitar la extinción de especies y garantizar la salud y el equilibrio de los ecosistemas.
+La protección del hábitat es fundamental, pero no es suficiente por sí sola. Se pueden requerir medidas adicionales como la reproducción en cautiverio, la reintroducción en la naturaleza, el control de especies invasoras y la lucha contra la caza furtiva para garantizar la supervivencia de una especie en peligro de extinción
+36
+1
+Inicio
+2
+dinero
+3
+estudio
+4
+desafio
+5
+carta
+6
+dinero
+7
+estudio
+8
+desafio
+9
+dinero
+10
+catastrofe
+11
+vacio
+12
+dinero
+13
+estudio
+14
+desafio
+15
+carta
+16
+estudio
+17
+desafio
+18
+dinero
+19
+catastrofe
+20
+vacio
+21
+dinero
+22
+estudio
+23
+desafio
+24
+carta
+25
+estudio
+26
+desafio
+27
+dinero
+28
+catastrofe
+29
+vacio
+30
+dinero
+31
+estudio
+32
+desafio
+33
+carta
+34
+estudio
+35
+desafio
+36
+dinero

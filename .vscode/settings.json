@@ -4,6 +4,7 @@
     "*.excalidrawlib": "json",
     "ostream": "cpp",
     "iostream": "cpp",
-    "*.tcc": "cpp"
+    "*.tcc": "cpp",
+    "iosfwd": "cpp"
   }
 }

@@ -9,6 +9,34 @@ using namespace std;
 random_device rd;
 
 // Estructuras
+
+struct Desafio
+{
+    int nivel;
+    int pregNivel;
+    string nombre;
+    string pregunta1;
+    string pregunta2;
+    Desafio *siguiente;
+};
+
+struct Catastrofe
+{
+    int nivel = 10;
+    string nombre;
+    string pregunta1;
+    string pregunta2;
+    Catastrofe *proxCatastrofe;
+};
+
+struct Inteligencia
+{
+    string pregunta;
+    string respuesta1;
+    string respuesta2;
+    Inteligencia *proxInteligencia;
+};
+
 struct BoolsCasilla
 {
     bool J1 = false;
@@ -39,14 +67,12 @@ struct jugador
 uniform_int_distribution<int> distDado(1, 4);
 uniform_int_distribution<int> distCarta(1, 3);
 uniform_int_distribution<int> distDesafio(1, 10);
-
 uniform_int_distribution<int> distCatastrofe(1, 5);
 
 int Dado()
 {
     return distDado(rd);
 }
-
 int carta()
 {
     return distCarta(rd);
@@ -58,6 +84,21 @@ int desafio()
 int catastrofe()
 {
     return distCatastrofe(rd);
+}
+
+bool listaVaciaDesafios(Desafio *inicio)
+{
+    return inicio == NULL;
+}
+
+bool listaVaciaCatastrofe(Catastrofe *inicio)
+{
+    return inicio == NULL;
+}
+
+bool listaVaciaInteligencia(Inteligencia *inicio)
+{
+    return inicio == NULL;
 }
 
 bool listaVacia(Casilla *inicio)
@@ -88,6 +129,38 @@ void mostrarjg(jugador *inicio)
         cout << "Lista esta vacia" << endl;
 }
 
+Desafio *crearDesafio(int nivel, int pregunta, string nombre, string pregunta1, string pregunta2)
+{
+    Desafio *nuevo = new Desafio;
+    nuevo->nivel = nivel;
+    nuevo->pregNivel = pregunta;
+    nuevo->nombre = nombre;
+    nuevo->pregunta1 = pregunta1;
+    nuevo->pregunta2 = pregunta2;
+    nuevo->siguiente = NULL;
+    return nuevo;
+}
+
+Catastrofe *crearCatastrofe(string nombre, string pregunta1, string pregunta2)
+{
+    Catastrofe *nuevo = new Catastrofe;
+    nuevo->nombre = nombre;
+    nuevo->pregunta1 = pregunta1;
+    nuevo->pregunta2 = pregunta2;
+    nuevo->proxCatastrofe = NULL;
+    return nuevo;
+}
+
+Inteligencia *crearInteligencia(string pregunta, string respuesta1, string respuesta2)
+{
+    Inteligencia *nuevo = new Inteligencia;
+    nuevo->pregunta = pregunta;
+    nuevo->respuesta1 = respuesta1;
+    nuevo->respuesta2 = respuesta2;
+    nuevo->proxInteligencia = NULL;
+    return nuevo;
+}
+
 Casilla *crearNodoMapa(string valor, string tipo)
 {
     Casilla *nuevo = new Casilla;
@@ -111,6 +184,70 @@ jugador *crearNodoJG(string numjg, Casilla *mapa)
     nuevo->proxjg = NULL;
     return nuevo;
 }
+
+void insertarUltimoDesafio(Desafio **inicio, int nivel, int pregNivel, string nombre, string pregunta1, string pregunta2)
+{
+    Desafio *nuevo = crearDesafio(nivel, pregNivel, nombre, pregunta1, pregunta2);
+    nuevo->nivel = nivel;
+    nuevo->pregNivel = pregNivel;
+    nuevo->nombre = nombre;
+    nuevo->pregunta1 = pregunta1;
+    nuevo->pregunta2 = pregunta2;
+    nuevo->siguiente = NULL;
+
+    if (listaVaciaDesafios(*inicio))
+    {
+        *inicio = nuevo;
+    }
+    else
+    {
+        Desafio *aux = *inicio;
+        while (aux->siguiente != NULL)
+        {
+            aux = aux->siguiente;
+        }
+        aux->siguiente = nuevo;
+    }
+}
+
+void insertarUltimoCatastrofe(Catastrofe **inicio, string nombre, string pregunta1, string pregunta2)
+{
+    Catastrofe *nuevo = crearCatastrofe(nombre, pregunta1, pregunta2);
+
+    if (listaVaciaCatastrofe(*inicio))
+    {
+        *inicio = nuevo;
+    }
+    else
+    {
+        Catastrofe *aux = *inicio;
+        while (aux->proxCatastrofe != NULL)
+        {
+            aux = aux->proxCatastrofe;
+        }
+        aux->proxCatastrofe = nuevo;
+    }
+}
+
+void insertarUltimoInteligencia(Inteligencia **inicio, string pregunta, string respuesta1, string respuesta2)
+{
+    Inteligencia *nuevo = crearInteligencia(pregunta, respuesta1, respuesta2);
+
+    if (listaVaciaInteligencia(*inicio))
+    {
+        *inicio = nuevo;
+    }
+    else
+    {
+        Inteligencia *aux = *inicio;
+        while (aux->proxInteligencia != NULL)
+        {
+            aux = aux->proxInteligencia;
+        }
+        aux->proxInteligencia = nuevo;
+    }
+}
+
 void insertarUltimoJG(jugador **inicio, string num, Casilla *mapa)
 {
     jugador *nuevo = crearNodoJG(num, mapa);
@@ -149,6 +286,80 @@ void insertarUltimoMapa(Casilla **mapa, string num, string tipo)
     }
 }
 
+void cargarDatos(Desafio **desafios, Catastrofe **catastrofes, Inteligencia **inteligencia, Casilla **mapa)
+{
+    ifstream archivoEntrada("Listas.txt");
+
+    if (archivoEntrada.is_open())
+    {
+        string cantidad;
+
+        getline(archivoEntrada, cantidad);
+
+        int i = 0;
+        while (i < stoi(cantidad))
+        {
+            string nivel, pregNivel, nombre, pregunta1,pregunta2;
+            getline(archivoEntrada, nivel);
+            getline(archivoEntrada, pregNivel);
+            getline(archivoEntrada, nombre);
+            getline(archivoEntrada, pregunta1);
+            getline(archivoEntrada, pregunta2);
+
+            int numNivel = stoi(nivel);
+            int numPregNivel = stoi(pregNivel);
+
+            insertarUltimoDesafio(*&desafios, numNivel, numPregNivel, nombre, pregunta1, pregunta2);
+            i++;
+        }
+
+        i = 0;
+        getline(archivoEntrada, cantidad);
+        while (i < stoi(cantidad))
+        {
+            string nombre, pregunta1, pregunta2;
+            getline(archivoEntrada, nombre);
+            getline(archivoEntrada, pregunta1);
+            getline(archivoEntrada, pregunta2);
+
+            insertarUltimoCatastrofe(*&catastrofes, nombre, pregunta1, pregunta2);
+            i++;
+        }
+
+        i = 0;
+        getline(archivoEntrada, cantidad);
+        while (i < stoi(cantidad))
+        {
+            string pregunta, respuesta1, respuesta2;
+            getline(archivoEntrada, pregunta);
+            getline(archivoEntrada, respuesta1);
+            getline(archivoEntrada, respuesta2);
+
+            insertarUltimoInteligencia(*&inteligencia, pregunta, respuesta1, respuesta2);
+            i++;
+        }
+
+        i = 0;
+        getline(archivoEntrada, cantidad);
+        while (i < stoi(cantidad))
+        {
+            string numCasilla, TipoCasilla;
+            getline(archivoEntrada, numCasilla);
+            getline(archivoEntrada, TipoCasilla);
+
+            insertarUltimoMapa(*&mapa, numCasilla, TipoCasilla);
+            i++;
+        }
+        archivoEntrada.close();
+    }
+    else
+    {
+        cout << "No se pudo abrir el archivo Listas.txt" << endl;
+    }
+}
+
+
+//Funcion para mover el cursor a una posicion especifica
 void gotoxy(int x, int y)
 {
     HANDLE hcon;
@@ -159,6 +370,7 @@ void gotoxy(int x, int y)
     SetConsoleCursorPosition(hcon, dwPos);
 }
 
+//Funcion para imprimir al jugador si se encuentra en esa casilla
 void imprimirJugador(BoolsCasilla *listJugadores, int i, int j)
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -188,6 +400,8 @@ void imprimirJugador(BoolsCasilla *listJugadores, int i, int j)
         cout << "4";
     }
 }
+
+//Funcion para determinar el color de la casilla segun el tipo de casilla
 void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla *jugadores, bool catastrofeActivo)
 {
 
@@ -244,13 +458,18 @@ void determinarColor(string tipoCasilla, int i, int j, BoolsCasilla *jugadores, 
     imprimirJugador(jugadores, i, j);
 }
 
+//Funcion para imprimir el tablero del juego, solo funciona para
 void imprimirTabla(Casilla *mapa, bool catastrofeActivo)
 {
 
     int valor = 36;
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+    //Se divide el valor del total de las casillas entre 4
+    //Para saber cuantas veces tiene que recorrer el mapa por cada lado
     float posiciones = valor / 4;
+
+
     int i = 1, j = 1;
     gotoxy(i * 6, j * 3);
     determinarColor(mapa->TipoCasilla, i * 6, j * 3, mapa->Jugadores, catastrofeActivo);
@@ -404,6 +623,7 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
     }
     (*j)->ubicacion->Jugadores->J4 = true;
 }
+
 void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TAB)
 {
     int moneda;
@@ -419,7 +639,6 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
 
     while (vueltaJuego < 4)
     {
-
         aux = *listaPlayer;
         int i = 1;
         while ( vueltaJuego < 4 && i <= contadorjg(*listaPlayer))
@@ -452,8 +671,6 @@ void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TA
             {
                 moverplayer4(&aux, dado, &vueltaJuego);
             }
-            cout << "vuelta " << aux->NumJ << aux->vuelta << endl;
-            cout << "vueltaJuego " << vueltaJuego << endl;
             cin.get();
             if (aux->ubicacion->TipoCasilla == "dinero")
             {
@@ -589,8 +806,10 @@ int main()
     string TAB = "\t\t\t\t\t\t\t\t\t\t";
     bool PartidaActiva = true;
     jugador *ListaJG = NULL;
+    Desafio *desafio = NULL;
+    Catastrofe *catastrofes = NULL;
+    Inteligencia *inteligencia = NULL;
     Casilla *mapa = NULL;
-    int i = 0;
     for (int z = 0; z < 200; z++)
     {
         distDado(rd);
@@ -598,28 +817,36 @@ int main()
         distCatastrofe(rd);
         distDesafio(rd);
     }
-    string numerocasilla;
-    string tipo, auxiliarstr;
-    ifstream archivo("mapa.txt");
-    while (i != 36)
-    {
-        getline(archivo, auxiliarstr);
-        numerocasilla = auxiliarstr;
-        // cout << numerocasilla << endl;
-        getline(archivo, auxiliarstr);
-        tipo = auxiliarstr;
-        // cout << tipo << endl;
-        insertarUltimoMapa(&mapa, numerocasilla, tipo);
-        i++;
-        //  cout << i << endl;
-    }
-    archivo.close();
+
+    cargarDatos(&desafio, &catastrofes, &inteligencia, &mapa);
+
+    // int i = 0;
+    // string numerocasilla;
+    // string tipo, auxiliarstr;
+    // ifstream archivo("mapa.txt");
+    // while (i != 36)
+    // {
+    //     getline(archivo, auxiliarstr);
+    //     numerocasilla = auxiliarstr;
+    //     // cout << numerocasilla << endl;
+    //     getline(archivo, auxiliarstr);
+    //     tipo = auxiliarstr;
+    //     // cout << tipo << endl;
+    //     insertarUltimoMapa(&mapa, numerocasilla, tipo);
+    //     i++;
+    //     //  cout << i << endl;
+    // }
+    // archivo.close();
+
     Casilla *aux = mapa;
     while (aux->proxCasilla != NULL)
     {
+        cout << aux->TipoCasilla << "->";
         aux = aux->proxCasilla;
     }
     aux->proxCasilla = mapa;
+    cin.get();
+
     // mostrarmapa(mapa);
     // HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     // SetConsoleTextAttribute(hConsole, 187);
@@ -703,7 +930,6 @@ int main()
     // imprimirTabla(mapa);
     cout << "2" << endl;
     juego(&ListaJG, &mapa, PartidaActiva, TAB);
-    mostrarjg(ListaJG);
     cin.get();
     return 0;
 }
