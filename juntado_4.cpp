@@ -1,14 +1,23 @@
 #include <iostream>
+#include <iomanip>
 #include <windows.h>
 #include <fstream>
 #include <conio.h>
 #include <cstdlib>
 #include <stdio.h>
 #include <random>
+#include <time.h>
 using namespace std;
 random_device rd;
 
 // Estructuras
+
+struct TOP
+{
+    string nombre;
+    int puntuacion;
+    TOP *proxtop;
+};
 
 struct Desafio
 {
@@ -36,17 +45,6 @@ struct Inteligencia
     string respuesta2;
     Inteligencia *proxInteligencia;
 };
-struct ListaDesafios
-{
-    Desafio *nivel1;
-    Desafio *nivel2;
-};
-struct BaseDeDatos
-{
-    Desafio *desafios;
-    Catastrofe *catastrofe;
-    Inteligencia *inteligencia;
-};
 struct BoolsCasilla
 {
     bool J1 = false;
@@ -73,6 +71,20 @@ struct jugador
     Casilla *ubicacion;
     jugador *proxjg;
 };
+struct BaseDeDatos
+{
+    Desafio *desafios;
+    Catastrofe *catastrofe;
+    Inteligencia *inteligencia;
+    Casilla *mapa;
+};
+
+int generarRandom(int limInf, int limSup)
+{
+    static default_random_engine generador(time(nullptr));
+    uniform_int_distribution<int> distribucion(limInf, limSup);
+    return distribucion(generador);
+}
 
 uniform_int_distribution<int> distDado(1, 4);
 uniform_int_distribution<int> distCarta(1, 3);
@@ -180,6 +192,7 @@ Casilla *crearNodoMapa(string valor, string tipo)
     nuevo->Jugadores = new BoolsCasilla;
     return nuevo;
 }
+
 jugador *crearNodoJG(string numjg, Casilla *mapa)
 {
     jugador *nuevo = new jugador;
@@ -189,7 +202,7 @@ jugador *crearNodoJG(string numjg, Casilla *mapa)
     nuevo->dinero = 5;
     nuevo->vida = 4;
     nuevo->vuelta = 1;
-    bool proteccion = false;
+    nuevo->proteccion = false;
     nuevo->ubicacion = mapa;
     nuevo->proxjg = NULL;
     return nuevo;
@@ -305,7 +318,6 @@ void cargarDatos(Desafio **desafios, Catastrofe **catastrofes, Inteligencia **in
         string cantidad;
 
         getline(archivoEntrada, cantidad);
-
         int i = 0;
         while (i < stoi(cantidad))
         {
@@ -563,7 +575,6 @@ void moverplayer1(jugador *j, int dado, int *vueltaJuego)
         j->ubicacion = j->ubicacion->proxCasilla;
         if (j->ubicacion->TipoCasilla == "Inicio")
         {
-            cin.get();
             j->vuelta++;
             if (j->vuelta > *vueltaJuego)
             {
@@ -583,7 +594,6 @@ void moverplayer2(jugador **j, int dado, int *vueltaJuego)
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
         if ((*j)->ubicacion->TipoCasilla == "Inicio")
         {
-            cin.get();
             (*j)->vuelta++;
             if ((*j)->vuelta > *vueltaJuego)
             {
@@ -603,7 +613,6 @@ void moverplayer3(jugador **j, int dado, int *vueltaJuego)
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
         if ((*j)->ubicacion->TipoCasilla == "Inicio")
         {
-            cin.get();
             (*j)->vuelta++;
             if ((*j)->vuelta > *vueltaJuego)
             {
@@ -623,7 +632,6 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
         (*j)->ubicacion = (*j)->ubicacion->proxCasilla;
         if ((*j)->ubicacion->TipoCasilla == "Inicio")
         {
-            cin.get();
             (*j)->vuelta++;
             if ((*j)->vuelta > *vueltaJuego)
             {
@@ -635,222 +643,142 @@ void moverplayer4(jugador **j, int dado, int *vueltaJuego)
     (*j)->ubicacion->Jugadores->J4 = true;
 }
 
-void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TAB, BaseDeDatos *base)
+void quitarvida(jugador *j, int dano, int i, int *contMuertos)
 {
-    int moneda;
-    int cas;
-    int des;
-    int preg;
-    int prob;
-    jugador *aux = *listaPlayer;
-    bool catastrofeActivo = false;
-    int vueltaJuego = 1;
-    int dado;
-    system("pause");
-
-    while (vueltaJuego < 4)
+    j->vida = j->vida - dano;
+    if (j->vida <= 0)
     {
-        aux = *listaPlayer;
-        int i = 1;
-        while (vueltaJuego < 4 && i <= contadorjg(*listaPlayer))
+        switch (i)
         {
-            // if (aux->vida == 0)
-            //  saltar turno
-            system("cls");
-            imprimirTabla(*mapa, catastrofeActivo);
-            cout << TAB << " TURNO JUGADOR " << i << endl;
+        case 1:
+            j->ubicacion->Jugadores->J1 = false;
+            break;
 
-            MostrarEstadisticas(aux, TAB);
-
-            cout << TAB << "Pulse una tecla para lanzar el dado \n";
-            cin.get();
-            dado = Dado();
-            cout << TAB << "Te ha salido un: " << dado;
-            cin.get();
-            if (i == 1)
-            {
-
-                moverplayer1(aux, dado, &vueltaJuego);
-            }
-            if (i == 2)
-            {
-                moverplayer2(&aux, dado, &vueltaJuego);
-            }
-            if (i == 3)
-            {
-                moverplayer3(&aux, dado, &vueltaJuego);
-            }
-            if (i == 4)
-            {
-                moverplayer4(&aux, dado, &vueltaJuego);
-            }
-            cin.get();
-            if (aux->ubicacion->TipoCasilla == "dinero")
-            {
-                prob = carta();
-                if (prob == 1)
-                {
-                    moneda = 1;
-                    aux->dinero = aux->dinero + moneda;
-                }
-                if (prob == 2)
-                {
-                    moneda = 5;
-                    aux->dinero = aux->dinero + moneda;
-                }
-                if (prob == 3)
-                {
-                    moneda = 10;
-                    aux->dinero = aux->dinero + moneda;
-                }
-                cout << TAB << "| HAS OBTENIDO " << moneda << " MONEDAS | \n";
-            }
-            if (aux->ubicacion->TipoCasilla == "vacio")
-            {
-                cout << TAB << "| HAS CAIDO EN UNA CASILLA DE DESCANSO | \n";
-            }
-            if (aux->ubicacion->TipoCasilla == "carta")
-            {
-                cout << TAB << "| HAS OBTENIDO UNA CARTA |\n";
-                int car = desafio();
-                if (car <= 4)
-                {
-                    prob = carta();
-                    if (prob == 1)
-                    {
-                        moneda = 1;
-                        aux->dinero = aux->dinero + moneda;
-                    }
-                    if (prob == 2)
-                    {
-                        moneda = 5;
-                        aux->dinero = aux->dinero + moneda;
-                    }
-                    if (prob == 3)
-                    {
-                        moneda = 10;
-                        aux->dinero = aux->dinero + moneda;
-                    }
-                    cout << TAB << "| HAS OBTENIDO " << moneda << " MONEDAS | \n";
-                }
-                if (car > 5 && car < 9)
-                {
-                    prob = carta();
-                    if (prob == 1)
-                    {
-                        moneda = 1;
-                        aux->dinero = aux->dinero - moneda;
-                    }
-                    if (prob == 2)
-                    {
-                        moneda = 5;
-                        aux->dinero = aux->dinero - moneda;
-                    }
-                    if (prob == 1)
-                    {
-                        moneda = 10;
-                        aux->dinero = aux->dinero - moneda;
-                    }
-                    cout << TAB << "| HAS PERDIDO " << moneda << " MONEDAS | \n";
-                }
-                if (car <= 9)
-                {
-                    aux->proteccion = true;
-                    cout << TAB << "| HAS OBTENIDO UN OBJETO RARO, UNA PROTECCION PARA EL PROXIMA DESAFIO |\n";
-                }
-            }
-            if (aux->ubicacion->TipoCasilla == "estudio")
-            {
-                cout << TAB << "| HAS OBTENIDO LA OPORTUNIDA DE CONSEGUIR CONOCIMIENTO |\n";
-                cout << TAB << "| RESPONDE BIEN LA SIGUIENTE PREGUNTA |\n";
-                Inteligencia *auxDes = base->inteligencia;
-                int respu;
-                preg = desafio(); // reutilizo desafio porque su parametro seria el mismo de estudio (1,10)
-                for (int gg = 0; i < preg; gg++)
-                {
-                    auxDes = auxDes->proxInteligencia;
-                }
-                cout << TAB << auxDes->pregunta << endl;
-                cout << TAB << "1) " << auxDes->respuesta1 << endl;
-                cout << TAB << "2) " << auxDes->respuesta2 << endl;
-                cin >> respu;
-                switch (respu)
-                {
-                case 1:
-                    aux->inteligencia = aux->inteligencia + 1;
-                    cout << TAB << "| RESPUESTA CORRECTA, TU INTELIGENCIA A AUMENTADO A " << aux->inteligencia << " | \n";
-                    break;
-                case 2:
-                    cout << TAB << "| RESPUESTA INCORRECTA NO AUMENTASTE TU INTELIGENCIA | \n";
-                default:
-                    cout << TAB << "| RESPUESTA INVALIDAD, PIERDES LA OPORTUNIDAD POR GRACIOSO |\n";
-                    break;
-                }
-            }
-            // if (aux->ubicacion->TipoCasilla == "desafio")
-            // {
-            //     des = desafio();
-            //     // buscar nodo
-            //     cout << TAB << "| DESAFIO DE NIVEL " << des << " |\n";
-            // }
-            if (aux->ubicacion->TipoCasilla == "catastrofe" && catastrofeActivo == true)
-            {
-                Catastrofe *auxCas = base->catastrofe;
-                cout << TAB << "|!!!!! ALERTA HA INICIADO UNA CATASTROFE !!!!!|\n";
-                cas = catastrofe();
-                int casRes;
-                for (int cass = 0; cass < cas; cass++)
-                {
-                    auxCas = auxCas->proxCatastrofe;
-
-                    if (auxCas == NULL)
-                        auxCas = base->catastrofe;
-                }
-                cout << TAB << auxCas->nombre << endl
-                     << endl;
-                cout << TAB << "COMO LO RESOLVERIAS?\n";
-                cout << TAB << "1) " << auxCas->pregunta1 << endl;
-                cout << TAB << "2) " << auxCas->pregunta2 << endl;
-                cin >> casRes;
-                switch (casRes)
-                {
-                case 1:
-                    cout << TAB << "| HAS RESOLVIDO LA CATASTROFE  |\n";
-                    cout << TAB << "| HAS OBTENIDO ¡¡UNA ESTRELLA! |\n";
-                    cout << TAB << "| LA ZONA DE LA CATASTROFE HA SIDO DESPEJADA |\n";
-                    aux->estrellas = aux->estrellas + 1;
-                    aux->ubicacion->TipoCasilla = "vacio";
-                    break;
-                case 2:
-                    cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
-                    cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
-                    aux->vida = 0;
-
-                    break;
-
-                default:
-                    cout << TAB << "| TU PROPUESTA HA SIDO INVALIDA, POR TU DESCUIDO TODO SALIO MAL |\n";
-                    cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
-                    cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
-                    aux->vida = 0;
-                    break;
-                }
-            }
-
-            if (vueltaJuego > 1 && !catastrofeActivo)
-            {
-                catastrofeActivo = true;
-            }
-            cin.get();
-
-            i++;
-            aux = aux->proxjg;
+        case 2:
+            j->ubicacion->Jugadores->J2 = false;
+            break;
+        case 3:
+            j->ubicacion->Jugadores->J3 = false;
+            break;
+        case 4:
+            j->ubicacion->Jugadores->J4 = false;
+            break;
+        default:
+            break;
         }
-        aux = *listaPlayer;
+        *contMuertos = *contMuertos + 1;
     }
 }
 
-void PuntajeFinal(jugador *lista)
+void ImprimirTexto(const string &text, int width, string TAB)
+{
+    for (size_t i = 0; i < text.length(); i += width)
+    {
+        cout << TAB << setw(width) << setfill(' ') << left << text.substr(i, width) << endl;
+    }
+}
+
+void mostrarInterfazJugador(Casilla *mapa, bool catastrofeActivo, int i, string TAB, jugador *aux)
+{
+    system("cls");
+    imprimirTabla(mapa, catastrofeActivo);
+    cout << TAB << " TURNO JUGADOR " << i << endl;
+    MostrarEstadisticas(aux, TAB);
+}
+
+void insertarNodoTOP(TOP **top, string nombre, int puntuacion)
+{
+    TOP *nuevo = new TOP;
+    nuevo->nombre = nombre;
+    nuevo->puntuacion = puntuacion;
+    nuevo->proxtop = NULL;
+
+    if (*top == NULL || puntuacion > (*top)->puntuacion)
+    {
+        nuevo->proxtop = (*top);
+        *top = nuevo;
+    }
+    else
+    {
+        TOP *aux = *top;
+        while (aux->proxtop != NULL && aux->proxtop->puntuacion > puntuacion)
+        {
+            aux = aux->proxtop;
+        }
+        nuevo->proxtop = aux->proxtop;
+        aux->proxtop = nuevo;
+    }
+}
+
+void eliminarextratop(TOP **top)
+{
+
+    TOP *aux = *top;
+    for (int i = 1; i < 10; ++i)
+    {
+
+        aux = aux->proxtop;
+    }
+
+    TOP *safado = aux->proxtop;
+    aux->proxtop = safado->proxtop;
+    delete safado;
+}
+
+void guardarListaEnArchivo(TOP *top)
+{
+    ofstream archivo("TOP.txt");
+    if (archivo.is_open())
+    {
+        TOP *aux = top;
+        while (aux != NULL)
+        {
+            archivo << aux->nombre << " " << aux->puntuacion << endl;
+            aux = aux->proxtop;
+        }
+        archivo.close();
+    }
+    else
+    {
+        cout << "Error al abrir el archivo para escritura." << endl;
+    }
+}
+
+void imprimirTOP(TOP *top)
+{
+    TOP *aux = top;
+    while (aux != NULL)
+    {
+        cout << "Nombre: " << aux->nombre << ", Puntuación: " << aux->puntuacion << endl;
+        aux = aux->proxtop;
+    }
+}
+void LiberarMemoriaTOP(TOP **top)
+{
+    while (top != NULL)
+    {
+        TOP *temp = *top;
+        (*top) = (*top)->proxtop;
+        delete temp;
+    }
+}
+void FuncionesTopjg(TOP **top, int puntacionJG)
+{
+
+    string nombre;
+    cout << "| INGRESE UN APODO: ";
+    cin >> nombre;
+    system("pause");
+    insertarNodoTOP(top, nombre, puntacionJG);
+
+    eliminarextratop(top);
+
+    cout << endl
+         << "| TU PUNTAJE A SIDO REGISTRADO |" << endl;
+
+    guardarListaEnArchivo(*top);
+}
+void PuntajeFinal(jugador *lista, TOP **top)
 {
 
     int a = 0, b = 0, c = 0, d = 0;
@@ -872,31 +800,376 @@ void PuntajeFinal(jugador *lista)
         c = aux->dinero + c;
     }
     if (contadorjg(lista) == 4)
+    {
         aux = aux->proxjg;
-    d = aux->estrellas * 1000;
-    d = (aux->inteligencia * 100) + d;
-    d = aux->dinero + d;
-    //
+        d = aux->estrellas * 1000;
+        d = (aux->inteligencia * 100) + d;
+        d = aux->dinero + d;
+    }
     if ((a > b) && (a > c) && (a > d))
     {
         cout << "JUGADOR 1 GANADOR\n";
-        // AgregarTop(a);
+        FuncionesTopjg(top, a);
     }
     if ((b > a) && (b > c) && (b > d))
     {
         cout << "JUGADOR 2 GANADOR\n";
-        // AgregarTop(b);
+        FuncionesTopjg(top, b);
     }
     if ((c > b) && (c > a) && (c > d))
     {
         cout << "Jugador 2 GANADOR\n";
-        // AgregarTop(c);
+        FuncionesTopjg(top, c);
     }
     if ((d > b) && (d > c) && (a < d))
     {
         cout << "Jugador 4 GANADOR\n";
-        // AgregarTop(d);
+        FuncionesTopjg(top, d);
     }
+}
+void juego(jugador **listaPlayer, Casilla **mapa, bool &PartidaActiva, string TAB, BaseDeDatos *base, TOP **top)
+{
+    int moneda;
+    int cas;
+    int preg;
+    int prob;
+    jugador *aux = *listaPlayer;
+    bool catastrofeActivo = false;
+    int vueltaJuego = 1;
+    int dado;
+    int contMuertos = 0;
+
+    while (vueltaJuego < 4 && contMuertos < contadorjg(*listaPlayer) - 1)
+    {
+        aux = *listaPlayer;
+        int i = 1;
+        while (vueltaJuego < 4 && i <= contadorjg(*listaPlayer) && contMuertos < contadorjg(*listaPlayer) - 1)
+        {
+            if (aux->vida > 0)
+            {
+
+                mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+
+                cout << TAB << "Pulse una tecla para lanzar el dado \n";
+                _getch();
+                dado = Dado();
+                cout << TAB << "Te ha salido un: " << dado << endl;
+                _getch();
+
+                if (i == 1)
+                {
+                    moverplayer1(aux, dado, &vueltaJuego);
+                }
+                if (i == 2)
+                {
+                    moverplayer2(&aux, dado, &vueltaJuego);
+                }
+                if (i == 3)
+                {
+                    moverplayer3(&aux, dado, &vueltaJuego);
+                }
+                if (i == 4)
+                {
+                    moverplayer4(&aux, dado, &vueltaJuego);
+                }
+
+                if (vueltaJuego > 1 && !catastrofeActivo)
+                {
+                    catastrofeActivo = true;
+                    cout << TAB << "| ALERTA AMBIENTAL |";
+                    cout << TAB << "| ESTAN OCURRIENDO DESASTRES NATURALES EN LA ZONA |";
+                    imprimirTabla(*mapa, catastrofeActivo);
+                    _getch();
+                }
+
+                if (aux->ubicacion->TipoCasilla == "dinero")
+                {
+                    prob = carta();
+                    if (prob == 1)
+                    {
+                        moneda = 1;
+                        aux->dinero = aux->dinero + moneda;
+                    }
+                    if (prob == 2)
+                    {
+                        moneda = 5;
+                        aux->dinero = aux->dinero + moneda;
+                    }
+                    if (prob == 3)
+                    {
+                        moneda = 10;
+                        aux->dinero = aux->dinero + moneda;
+                    }
+                    cout << TAB << "| HAS OBTENIDO " << moneda << " MONEDAS | \n";
+                    _getch();
+                    mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                }
+                if (aux->ubicacion->TipoCasilla == "vacio")
+                {
+                    mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    cout << TAB << "| ESTAS EN ZONA TRANQUILA | \n";
+                }
+                if (aux->ubicacion->TipoCasilla == "carta")
+                {
+                    cout << TAB << "| HAS OBTENIDO UNA CARTA |\n";
+                    int car = desafio();
+                    if (car <= 4)
+                    {
+                        prob = carta();
+                        if (prob == 1)
+                        {
+                            moneda = 1;
+                            aux->dinero = aux->dinero + moneda;
+                        }
+                        if (prob == 2)
+                        {
+                            moneda = 5;
+                            aux->dinero = aux->dinero + moneda;
+                        }
+                        if (prob == 3)
+                        {
+                            moneda = 10;
+                            aux->dinero = aux->dinero + moneda;
+                        }
+                        cout << TAB << "| HAS OBTENIDO " << moneda << " MONEDAS | \n";
+                        _getch();
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    }
+                    if (car > 5 && car < 9)
+                    {
+                        prob = carta();
+                        if (prob == 1)
+                        {
+                            moneda = 1;
+                            aux->dinero = aux->dinero - moneda;
+                        }
+                        if (prob == 2)
+                        {
+                            moneda = 5;
+                            aux->dinero = aux->dinero - moneda;
+                        }
+                        if (prob == 1)
+                        {
+                            moneda = 10;
+                            aux->dinero = aux->dinero - moneda;
+                        }
+                        if (aux->dinero < 0)
+                        {
+                            aux->dinero = 0;
+                        }
+                        cout << TAB << "| HAS PERDIDO " << moneda << " MONEDAS | \n";
+                        _getch();
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    }
+                    if (car >= 9)
+                    {
+                        aux->proteccion = true;
+                        cout << TAB << "| HAS OBTENIDO UN OBJETO RARO, UNA PROTECCION PARA EL PROXIMA DESAFIO |\n";
+                        _getch();
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    }
+                }
+                if (aux->ubicacion->TipoCasilla == "estudio")
+                {
+                    mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    cout << TAB << "| HAS OBTENIDO LA OPORTUNIDA DE CONSEGUIR CONOCIMIENTO |\n";
+                    cout << TAB << "| RESPONDE BIEN LA SIGUIENTE PREGUNTA |\n";
+                    Inteligencia *auxDes = base->inteligencia;
+                    int respu;
+                    preg = desafio(); // reutilizo desafio porque su parametro seria el mismo de estudio (1,10)
+                    for (int gg = 1; gg < preg; gg++)
+                    {
+                        auxDes = auxDes->proxInteligencia;
+                    }
+                    ImprimirTexto(auxDes->pregunta, 60, TAB);
+                    cout << TAB << "1) " << endl;
+                    ImprimirTexto(auxDes->respuesta1, 60, TAB);
+                    cout << TAB << "2) " << endl;
+                    ImprimirTexto(auxDes->respuesta2, 60, TAB);
+                    cout << TAB;
+                    cin >> respu;
+                    switch (respu)
+                    {
+                    case 1:
+                        aux->inteligencia = aux->inteligencia + 1;
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                        cout << TAB << "| RESPUESTA CORRECTA, TU INTELIGENCIA A AUMENTADO A " << aux->inteligencia << " | \n";
+                        break;
+                    case 2:
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                        cout << TAB << "| RESPUESTA INCORRECTA NO AUMENTASTE TU INTELIGENCIA | \n";
+                        break;
+                    default:
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                        cout << TAB << "| RESPUESTA INVALIDA, PIERDES LA OPORTUNIDAD POR GRACIOSO |\n";
+                        break;
+                    }
+                }
+
+                if (aux->ubicacion->TipoCasilla == "desafio")
+                {
+                    Desafio *auxDes = base->desafios;
+                    int nivel = generarRandom(1, 8);
+                    int numPreg = generarRandom(1, 10);
+
+                    mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    cout << TAB << "| HAS CAIDO EN UN DESAFIO DE NIVEL " << nivel << " |" << endl;
+                    cout << TAB;
+                    _getch();
+
+                    if (nivel <= aux->inteligencia)
+                    {
+
+                        int ubicacionDesafio = (nivel * 10) + numPreg - 10;
+
+                        for (int preg = 1; preg < ubicacionDesafio; preg++)
+                        {
+                            auxDes = auxDes->siguiente;
+                        }
+
+                        int accion = generarRandom(1, 2);
+
+                        int res;
+
+                        switch (accion)
+                        {
+                        case 1:
+                            mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                            cout << TAB << "INDICA SI LA ACCION ES CORRECTA PARA AYUDAR AL MEDIO AMBIENTE: " << endl;
+                            ImprimirTexto(auxDes->pregunta1, 60, TAB);
+                            cout << TAB << "1) Correcto" << endl;
+                            cout << TAB << "2) Incorrecto" << endl;
+                            cout << TAB;
+                            cin >> res;
+                            switch (res)
+                            {
+                            case 1:
+                                aux->estrellas = aux->estrellas + 1;
+                                mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                                cout << TAB << "| HAS RESUELTO EL DESAFIO |" << endl;
+                                cout << TAB << "| HAS GANADO UNA ESTRELLA |" << endl;
+                                break;
+
+                            default:
+                                quitarvida(aux, 1, i, &contMuertos);
+                                mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                                cout << TAB << "| HAS FALLADO EN EL DESAFIO AMBIENTAL |" << endl;
+                                cout << TAB << "| HAS PERDIDO UNA VIDA |" << endl;
+                                break;
+                            }
+                            break;
+                        default:
+                            cout << TAB << "INDICA SI LA ACCION ES CORRECTA PARA AYUDAR AL MEDIO AMBIENTE: " << endl;
+                            ImprimirTexto(auxDes->pregunta2, 60, TAB);
+                            cout << TAB << "1) Si" << endl;
+                            cout << TAB << "2) No" << endl;
+                            cout << TAB;
+                            cin >> res;
+                            switch (res)
+                            {
+                            case 2:
+                                aux->estrellas = aux->estrellas + 1;
+                                mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                                cout << TAB << "| HAS RESUELTO EL DESAFIO |" << endl;
+                                cout << TAB << "| HAS GANADO UNA ESTRELLA |" << endl;
+                                break;
+
+                            default:
+                                quitarvida(aux, 1, i, &contMuertos);
+                                mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                                cout << TAB << "| HAS FALLADO EL DESAFIO AMBIENTAL |" << endl;
+                                cout << TAB << "| HAS PERDIDO UNA VIDA |" << endl;
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        quitarvida(aux, 1, i, &contMuertos);
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                        cout << TAB << "| NO TIENES LA SUFICIENTE INTELIGENCIA PARA EL DESAFIO AMBIENTAL |" << endl;
+                        cout << TAB << "| HAS PERDIDO UNA VIDA |" << endl;
+                    }
+                }
+
+                if (aux->ubicacion->TipoCasilla == "catastrofe" && catastrofeActivo == true)
+                {
+                    mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    Catastrofe *auxCas = base->catastrofe;
+                    cout << TAB << "|!!!!! ALERTA HA INICIADO UNA CATASTROFE !!!!!|\n";
+                    cout << TAB << "|!!!!!LAS CATASTROFES REQUIEREN 9 DE INTELIGENCIA Y 50 MONEDAS !!!!!|\n";
+                    cas = catastrofe();
+                    int casRes;
+                    for (int cass = 0; cass < cas; cass++)
+                    {
+                        auxCas = auxCas->proxCatastrofe;
+
+                        if (auxCas == NULL)
+                            auxCas = base->catastrofe;
+                    }
+                    if (aux->inteligencia >= 9 && aux->dinero >= 50)
+                    {
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                        cout << TAB << auxCas->nombre << endl
+                             << endl;
+                        cout << TAB << "COMO LO RESOLVERIAS?\n";
+                        cout << TAB << "1) " << endl;
+                        ImprimirTexto(auxCas->pregunta1, 60, TAB);
+                        cout << TAB << "2) " << endl;
+                        ImprimirTexto(auxCas->pregunta2, 60, TAB);
+                        cout << TAB;
+                        cin >> casRes;
+                        switch (casRes)
+                        {
+                        case 1:
+                            mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                            cout << TAB << "| HAS RESUELTO LA CATASTROFE  |\n";
+                            cout << TAB << "| HAS OBTENIDO ¡¡CINCO ESTRELLAS!! |\n";
+                            cout << TAB << "| LA ZONA DE LA CATASTROFE HA SIDO DESPEJADA |\n";
+                            aux->estrellas = aux->estrellas + 5;
+                            aux->ubicacion->TipoCasilla = "vacio";
+                            break;
+                        case 2:
+                            mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                            cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
+                            cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
+                            aux->vida = 0;
+
+                            break;
+
+                        default:
+                            mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                            cout << TAB << "| TU PROPUESTA HA SIDO INVALIDA, POR TU DESCUIDO TODO SALIO MAL |\n";
+                            cout << TAB << "| HAS FALLADO EN SOBREVIVIR A LA CATASTROFE |\n";
+                            cout << TAB << "| HAS MUERTO EN ACCION, HAS SIDO ELIMINADO DE LA PARTIDA |\n";
+                            aux->vida = 0;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                        quitarvida(aux, 4, i, &contMuertos);
+                        cout << TAB << "|!!!!!ALERTA: NO POSEES LOS REQUERIMIENTOS MINIMOS PARA ESTA SITUACION!!!!!|\n";
+                        cout << TAB << "| DEBIDO A TUS CIRCUNSTANCIAS Y TU MALA SUERTE HAS FALLECIDO |\n";
+                    }
+                }
+
+                if (aux->ubicacion->TipoCasilla == "catastrofe" && catastrofeActivo == false)
+                {
+                    mostrarInterfazJugador(*mapa, catastrofeActivo, i, TAB, aux);
+                    cout << TAB << "| ESTAS EN ZONA TRANQUILA | \n";
+                }
+
+                _getch();
+            }
+            i++;
+            aux = aux->proxjg;
+        }
+        aux = *listaPlayer;
+    }
+    PuntajeFinal((*listaPlayer), top);
 }
 void Comojugar()
 {
@@ -912,7 +1185,7 @@ void Comojugar()
     cout << "Estudio : azulmarino, le otorga la oportunidad al jugador de subir su estadística de inteligencia si logra responder la pregunta correctamente\n";
     cout << "Desafio : azul oscuro, el jugador obtiene una pregunta la cual responder erróneamente le quitara una de sus 4 puntos de salud\n";
     cout << "Morado : carta, el jugador puede obtener, perder dinero y con un bajo porcentaje ganar una protección que le permitirá omitir la próxima casilla desafio.\n";
-    cout << "Rojo : Catastrofe,   un desafio con mayor requerimiento que la muerte resultarea en la muerte y eliminación del jugador pero su completacion otorgara una estrella que posee una gran cantidad de puntos\n\n";
+    cout << "Rojo: Catástrofe, un desafío con mayor requerimiento que de ser fracaso resultaría en la muerte y eliminación del jugador, pero si se completa se otorgara una estrella que luego será una gran cantidad de puntos\n\n";
     cout << "-----Como terminar----\n";
     cout << "Cuando un jugador complete las 3 vueltas al tablero o solo quede 1 jugador en pie\n";
     system("pause");
@@ -930,6 +1203,7 @@ void creditos()
 }
 int main()
 {
+    SetConsoleOutputCP(CP_UTF8);
     string TAB = "\t\t\t\t\t\t\t\t\t\t";
     bool PartidaActiva = true;
     jugador *ListaJG = NULL;
@@ -944,12 +1218,25 @@ int main()
         distCatastrofe(rd);
         distDesafio(rd);
     }
-    BaseDeDatos *Base = NULL;
-    Base->catastrofe = catastrofes;
-    Base->desafios = desafio;
-    Base->inteligencia = inteligencia;
-    cargarDatos(&desafio, &catastrofes, &inteligencia, &mapa);
 
+    BaseDeDatos *Base = new BaseDeDatos;
+    cargarDatos(&desafio, &catastrofes, &inteligencia, &mapa);
+    Base->desafios = desafio;
+    Base->catastrofe = catastrofes;
+    Base->inteligencia = inteligencia;
+    TOP *top = NULL;
+    ifstream archivo("TOP.txt");
+    if (archivo.is_open())
+    {
+        string nombre;
+        int puntuacion;
+        for (int i = 0; i < 10; ++i)
+        {
+            archivo >> nombre >> puntuacion;
+            insertarNodoTOP(&top, nombre, puntuacion);
+        }
+        archivo.close();
+    }
     // int i = 0;
     // string numerocasilla;
     // string tipo, auxiliarstr;
@@ -971,11 +1258,9 @@ int main()
     Casilla *aux = mapa;
     while (aux->proxCasilla != NULL)
     {
-        cout << aux->TipoCasilla << "->";
         aux = aux->proxCasilla;
     }
     aux->proxCasilla = mapa;
-    cin.get();
 
     // mostrarmapa(mapa);
     // HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -985,8 +1270,11 @@ int main()
     // cin.get();
 
     int opcion, opcion2, opcion3, numjg = 0;
+    // bool saltomenu = false;
     while (opcion != 5)
     {
+        opcion = 0;
+        opcion2 = 0;
         system("cls");
         cout << "---------Carrera---------" << endl;
         cout << "1) Iniciar Partida" << endl;
@@ -1003,6 +1291,7 @@ int main()
         case 1:
             while (opcion2 != 3)
             {
+                opcion2 = 0;
                 system("cls");
                 cout << "---------CARRERA---------" << endl;
                 cout << "1) Iniciar partida nueva" << endl;
@@ -1037,6 +1326,8 @@ int main()
                     cout << "No disponible\n";
                     system("pause");
                     break;
+                case 3:
+                    break;
                 default:
                     cout << "Opcion invalida\n";
                     system("pause");
@@ -1049,7 +1340,8 @@ int main()
             Comojugar();
             break;
         case 3:
-            // TopJugadores();
+            imprimirTOP(top);
+            _getch();
             break;
         case 4:
             creditos();
@@ -1064,8 +1356,8 @@ int main()
     iniciarjugadores(&mapa, ListaJG);
     system("cls");
     // imprimirTabla(mapa);
-    cout << "2" << endl;
-    juego(&ListaJG, &mapa, PartidaActiva, TAB, Base);
-    system("pause");
+    juego(&ListaJG, &mapa, PartidaActiva, TAB, Base, &top);
+    cin.get();
+    // system("pause");
     return 0;
 }
